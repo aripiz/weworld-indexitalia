@@ -1,0 +1,70 @@
+/* assets/styles.css */
+
+/* Stile per l'intestazione della tabella */
+.table-container {
+    height: 60vh; /* Imposta l'altezza massima del contenitore della tabella */
+    overflow-y: auto;  /* Abilita lo scorrimento verticale */
+}
+
+.fixed-header thead th {
+    position: sticky;
+    top: 0;
+    background-color: #F2F2F2; /* Colore di sfondo per l'header */
+    z-index: 0;
+    border-bottom: 2px solid #818181; /* Aggiungi una linea di separazione inferiore se necessario */
+}
+
+/* Classe per freccia verde in su */
+.arrow-up {
+    display: inline-block;
+    margin-left: 5px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid #3E876B;
+}
+
+/* Classe per freccia rossa in giù */
+.arrow-down {
+    display: inline-block;
+    margin-left: 5px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 10px solid #D53A50;
+}
+
+/* Classe per freccia gialla a destra */
+.arrow-right {
+    display: inline-block;
+    margin-left: 5px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 10px solid #DECE58;
+}
+
+/* Classe per allineare i numeri a destra e con spaziatura uniforme */
+.number-cell {
+    text-align: right;
+    font-feature-settings: 'tnum';
+    white-space: nowrap;
+}
+
+/* Contenitore flessibile per allineare il testo e la freccia */
+.flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Allinea gli elementi a destra */
+}
+
+/* Classe per il testo numerico */
+.number-text {
+    display: inline-block;
+    text-align: right;
+    min-width: 60px; /* Adeguato per numeri con segno e diverse lunghezze */
+    /*padding-left: 10px; /* Spazio tra il numero e la freccia */
+}
