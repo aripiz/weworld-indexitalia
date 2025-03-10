@@ -1,8 +1,8 @@
 # configuration.py
 
 # Main properties
-TITLE = 'ChildFund Alliance World Index 2024'
-BRAND_LINK = "https://childfundalliance.org/"
+TITLE = 'WeWorld Index Italia 2025'
+BRAND_LINK = "https:/weworld.it/"
 CREDITS_LINK = "https://github.com/aripiz"
 
 TEMPLATE = 'lux'
@@ -12,7 +12,7 @@ TEMPLATE_CSS = f"https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/{TEMPLATE}/b
 FIGURE_TEMPLATE = TEMPLATE.lower()
 DBC_CSS = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css"
 
-BRAND_COLOR = '#198754'
+BRAND_COLOR = '#005D9E'
 
 LAND_COLOR = "#3B3B3B"
 OCEAN_COLOR = "#F2F2F2"
@@ -38,12 +38,14 @@ SEQUENCE_COLOR = [
 ]
 
 # Tiers
-TIER_LABELS = ['Minimal', 'Limited', 'Basic', 'Moderate', 'Strong', 'Advanced']
+TIER_LABELS = ['Limitato', 'Minimo', 'Base', 'Moderato', 'Forte', 'Avanzato']
 TIER_BINS = [0, 45, 55, 65, 75, 85, 100]
 
 # Files link
 DATA_FILE = "https://raw.githubusercontent.com/aripiz/cfa-index/main/data/cfa-index-2024_data.csv"
 META_FILE = "https://raw.githubusercontent.com/aripiz/cfa-index/main/data//cfa-index-2024_metadata.csv"
 GEO_FILE = "https://raw.githubusercontent.com/aripiz/cfa-index/main/data/ne_110m_admin_0_countries.geojson"
-NOTES_FILE = "https://raw.githubusercontent.com/aripiz/cfa-index/main/data//cfa-index-2024_notes.pdf"
-REPORT_FILE =  "https://raw.githubusercontent.com/aripiz/cfa-index/main/data//cfa-index-2024_report.pdf"
+NOTES_FILE = "" 
+#"https://raw.githubusercontent.com/aripiz/cfa-index/main/data//cfa-index-2024_notes.pdf"
+REPORT_FILE =  ""
+"https://raw.githubusercontent.com/aripiz/cfa-index/main/data//cfa-index-2024_report.pdf"

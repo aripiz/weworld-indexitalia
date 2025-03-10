@@ -26,19 +26,19 @@ navbar = dbc.NavbarSimple(
             dbc.NavLink("Home", active='exact', href='/')
         ),
         dbc.NavItem(
-            dbc.NavLink("Scorecards", active='exact', href='/scorecards')
+            dbc.NavLink("Schede", active='exact', href='/scorecards')
         ),
         dbc.NavItem(
-            dbc.NavLink("Data", active='exact', href="/data")
+            dbc.NavLink("Dati", active='exact', href="/data")
         ),
         dbc.NavItem(
-            dbc.NavLink("Methodology", active='exact', href="/methodology")
+            dbc.NavLink("Metodologia", active='exact', href="/methodology")
         ),
         dbc.DropdownMenu(
             children=[
                 dbc.DropdownMenuItem("Report", href=REPORT_FILE),
-                dbc.DropdownMenuItem("Technical Notes", href=NOTES_FILE),
-                dbc.DropdownMenuItem("Data", id='open_download', n_clicks=0),
+                dbc.DropdownMenuItem("Note metodologiche", href=NOTES_FILE),
+                dbc.DropdownMenuItem("Dati", id='open_download', n_clicks=0),
                 modal_data_download
             ],
             nav=True,
@@ -48,9 +48,9 @@ navbar = dbc.NavbarSimple(
         ),
     ],
     brand=[
-        html.Img(src="assets/logo_childfund.svg", height='30px'),
-        "\u200a",
-        html.Span("World Index", style={"font-size": "14px"}) 
+        html.Img(src="assets/logo_weworld_neg.png", height='30px'),
+        "\u200a\u200a",
+        html.Span("Index Italia", style={"font-size": "14px"}) 
     ],
     brand_href=BRAND_LINK,
     fixed='top',
@@ -63,7 +63,7 @@ footer = dbc.Navbar(
     dbc.Container(
         children=[
             html.P(
-                "© 2024 ChildFund Alliance",
+                "© 2025 WeWorld Onlus",
                 style={'font-size': 'xx-small'},
                 className='mb-0'
             ),

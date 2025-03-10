@@ -9,13 +9,13 @@ register_page(__name__, name=TITLE)
 # Tabs
 tabs = dbc.Tabs(
     children=[
-        dbc.Tab(label="Components Map", tab_id="map_features"),
-        dbc.Tab(label="Indicators Map", tab_id="map_indicators"),
-        dbc.Tab(label="Components Ranking", tab_id="ranking"),
-        dbc.Tab(label="Components Evolution", tab_id="evolution"),
-        dbc.Tab(label="Dimensions Profile", tab_id="radar"),
-        dbc.Tab(label="Components Correlations", tab_id="correlations"),
-        dbc.Tab(label="Index Comparison", tab_id="comparison")
+        dbc.Tab(label="Mappa componenti", tab_id="map_features"),
+        dbc.Tab(label="Mappa indicatori", tab_id="map_indicators"),
+        dbc.Tab(label="Classifica", tab_id="ranking"),
+        dbc.Tab(label="Evoluzioni", tab_id="evolution"),
+        dbc.Tab(label="Profili", tab_id="radar"),
+        dbc.Tab(label="Correlazioni", tab_id="correlations"),
+        dbc.Tab(label="Confronto", tab_id="comparison")
     ],
     id="data_tabs",
     active_tab="map_features",
