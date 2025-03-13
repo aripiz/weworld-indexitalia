@@ -108,21 +108,21 @@ home = dbc.Container(
         dbc.Row(
             dbc.Col(
                 children=[
-                    html.H1("ChildFund Alliance World Index"),
+                    html.H1("WeWorld Index Italia 2025"),
                     dcc.Markdown(opening_text, className='my-4'),
-                    html.P("Click on the map to access country scorecards.", style={"text-align": "center"}),
+                    html.P("Seleziona una regione sulla mappa per accedere alla sua scheda.", style={"text-align": "center"}),
                     dcc.Loading(
                         dcc.Graph(
                             figure=display_map(),
                             config={'displayModeBar': False, 'editable': False},
-                            id='map_home'
+                            id='map_home',
                         ),
                         color=SEQUENCE_COLOR[0]
                     ),
                     dcc.Markdown(description_text, className='my-4'),
                 ],
                 lg=12,
-                xs=12
+                xs=12,
             ),
             className='mt-2',
             justify='around'
@@ -139,5 +139,6 @@ home = dbc.Container(
             className='mt-4',
             justify='around'
         ),
-    ]
+    ],
+    fluid=True,
 )

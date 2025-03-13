@@ -186,13 +186,13 @@ def display_evolution(territory):
     fig.update_traces(marker={'size': 10})
     template = (
         "<b>%{customdata[0]}</b><br><br>" +
-        "CFA World Index: " + "%{customdata[1]:#.3g}/100<br><br>" +
-        "Year: " + "%{customdata[2]}" +
+        "WeWorld Index Italia: " + "%{customdata[1]:#.3g}/100<br><br>" +
+        "Anno: " + "%{customdata[2]}" +
         "<extra></extra>"
     )
     fig.update_traces(hovertemplate=template)
     fig.update_layout(
-        legend_title='Territory',
+        legend_title='Territorio',
         xaxis=dict(tickvals=df['Year'].unique()),
         legend=dict(
             orientation='h',
@@ -259,6 +259,7 @@ def display_radar(territory):
     )
     fig.update_layout(
         legend=dict(
+            title='Territorio',
             orientation='h',
             yanchor="bottom",
             y=-0.3,
@@ -345,7 +346,7 @@ def display_table(territory):
     # Create table with header
     table = dbc.Table(
         [html.Thead(html.Tr([html.Th(col) for col in [
-            'Component', 'Score', 'Difference from Area', 'Difference from World'
+            'Componente', 'Punteggio', "Scarto dall'area", "Scarto dall'Italia"
         ]]))] +
         [html.Tbody(rows)],
         bordered=False,

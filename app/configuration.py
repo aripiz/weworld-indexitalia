@@ -5,7 +5,7 @@ TITLE = 'WeWorld Index Italia 2025'
 BRAND_LINK = "https:/weworld.it/"
 CREDITS_LINK = "https://github.com/aripiz"
 
-TEMPLATE = 'lux'
+TEMPLATE = 'journal'
 
 # Themes and colors
 TEMPLATE_CSS = f"https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/{TEMPLATE}/bootstrap.min.css"
@@ -45,10 +45,8 @@ GEO_KEY = "properties.istat_code_num"
 INDEX_KEY = "WeWorld Index Italia"
 
 # Files link
-DATA_FILE = "../data/weworld-index-2025_data.csv" #"https://raw.githubusercontent.com/aripiz/cfa-index/main/data/cfa-index-2024_data.csv"
-META_FILE = "../data/weworld-index-2025_metadata.csv" #"https://raw.githubusercontent.com/aripiz/cfa-index/main/data//cfa-index-2024_metadata.csv"
-GEO_FILE = "../data/italy_regions_low.json"#"https://raw.githubusercontent.com/aripiz/cfa-index/main/data/ne_110m_admin_0_countries.geojson"
+DATA_FILE = "../data/weworld-index-2025_data.csv" 
+META_FILE = "../data/weworld-index-2025_metadata.csv" 
+GEO_FILE = "../data/italy_regions_low.json"
 NOTES_FILE = "" 
-#"https://raw.githubusercontent.com/aripiz/cfa-index/main/data//cfa-index-2024_notes.pdf"
 REPORT_FILE =  ""
-"https://raw.githubusercontent.com/aripiz/cfa-index/main/data//cfa-index-2024_report.pdf"

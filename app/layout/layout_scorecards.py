@@ -13,14 +13,14 @@ card = dbc.Container(
             children=[
                 dbc.Col(
                     html.P(
-                        "Select a territory (Country/Area/World) from the list and explore the scorecard to gain insights into its CFA World Index performance."
+                        "Seleziona un territorio (Regione/Area/Italia) dall’elenco ed esplora la scheda punteggi per ottenere informazioni sulle sue prestazioni nel WeWorld Index Italia."
                     ),
                     lg=8, 
                     xs=12
                 ),
                 dbc.Col(
                     children=[
-                        dbc.Label("Territory"),
+                        dbc.Label("Territorio"),
                         dcc.Dropdown(
                             id='scorecard_territory',
                             options=territories_list,
@@ -65,9 +65,9 @@ card = dbc.Container(
                     children=[
                         html.H4("Area"),
                         html.P(id="scorecard_area", style={'align': 'right'}),
-                        html.H4("Population"),
+                        html.H4("Popolazione"),
                         html.P(id="scorecard_pop", style={'align': 'right'}),
-                        html.H4("GDP per capita"),
+                        html.H4("PIL pro capite"),
                         html.P(id="scorecard_gdp", style={'align': 'right'})
                     ],
                     lg=4, 
@@ -76,11 +76,11 @@ card = dbc.Container(
                 ),
                 dbc.Col(
                     children=[
-                        html.H4("CFA World Index Score"),
+                        html.H4("Punteggio"),
                         html.P(id="scorecard_score"),
-                        html.H4("CFA World Index Rank"),
+                        html.H4("Posizione"),
                         html.P(id="scorecard_rank", style={'align': 'right'}),
-                        html.H4("Human Rights Implementation"),
+                        html.H4("Implementazione dei diritti umani"),
                         html.P(id="scorecard_group")
                     ],
                     lg=5, 
@@ -95,7 +95,7 @@ card = dbc.Container(
             children=[
                 dbc.Col(
                     children=[
-                        html.H4("Progress"),
+                        html.H4("Progresso"),
                         dcc.Loading(
                             dcc.Graph(
                                 id='scorecard_progress',
@@ -115,7 +115,7 @@ card = dbc.Container(
                 ),
                 dbc.Col(
                     children=[
-                        html.H4("Profile"),
+                        html.H4("Profilo"),
                         dcc.Loading(
                             dcc.Graph(
                                 id='scorecard_radar',
@@ -141,7 +141,7 @@ card = dbc.Container(
             children=[
                 dbc.Col(
                     children=[
-                        html.H4("Components"),
+                        html.H4("Componenti"),
                         dcc.Loading(
                             html.Div(
                                 id='scorecard_table',
