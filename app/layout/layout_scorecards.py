@@ -24,7 +24,7 @@ card = dbc.Container(
                         dcc.Dropdown(
                             id='scorecard_territory',
                             options=territories_list,
-                            value='World'
+                            value='Italia'
                         )
                     ],
                     lg=4, 

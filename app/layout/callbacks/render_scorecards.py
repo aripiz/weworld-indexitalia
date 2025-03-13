@@ -16,7 +16,9 @@ from configuration import (
     TIER_LABELS, 
     TIER_BINS,
     FIGURE_TEMPLATE, 
-    LAND_COLOR
+    LAND_COLOR,
+    GEO_KEY,    
+    INDEX_KEY
 )
 from utilis import (
     sig_round, 
@@ -33,10 +35,10 @@ pio.templates.default = FIGURE_TEMPLATE
 # Create area to code mappings and centroids
 areas = {area: data[data['area'] == area]['code'].dropna().unique().tolist()
          for area in data['area'].dropna().unique()}
-areas['World'] = data['code'].unique().tolist()
+areas['Italia'] = data['code'].unique().tolist()
 
 centroids = {
-    row['ADM0_A3']: {
+    row[GEO_KEY.split('.')[-1]]: {
         'lat': row['geometry'].centroid.y,
         'lon': row['geometry'].centroid.x
     }
@@ -59,6 +61,7 @@ def update_scorecard_title(territory):
     Output("scorecard_map", "figure"),
     Input('scorecard_territory', 'value')
 )
+
 def update_scorecard_map(territory):
     if territory in areas:
         df = data[(data['area'] == territory)].rename(columns={'year': 'Year', 'area': 'Area'})
@@ -66,17 +69,20 @@ def update_scorecard_map(territory):
     else:
         df = data[(data['territory'] == territory)].rename(columns={'year': 'Year', 'area': 'Area'})
         lat, lon = centroids[df['code'].values[0]].values()
+        print(df['code'])
 
     fig = px.choropleth(
         df,
         locations='code',
+        geojson=geodata,
         color_discrete_sequence=[LAND_COLOR],
         hover_name='territory',
         hover_data={
             'code': False,
             'Year': False,
             'Area': False
-        }
+        },
+        fitbounds="locations",
     )
     fig.update_layout(
         showlegend=False,
@@ -89,16 +95,17 @@ def update_scorecard_map(territory):
         geo=dict(
             projection_type='orthographic',
             projection_scale=1.0,
-            showland=True,
-            showocean=True,
-            oceancolor=OCEAN_COLOR,
-            showlakes=True,
-            lakecolor=OCEAN_COLOR,
+            showland=False,
+            showocean=False,
+            #oceancolor=OCEAN_COLOR,
+            showlakes=False,
+            #lakecolor=OCEAN_COLOR,
             showrivers=False,
-            scope='world'
+            scope='europe',
+            visible=False
         )
     )
-    if territory == 'World':
+    if territory == 'Italia':
         fig.update_layout(
             geo=dict(
                 center=dict(lat=0, lon=0),
@@ -130,13 +137,13 @@ def update_scorecard_summary(territory):
     df_territory = data[data['year'] == 2023].set_index('territory').loc[territory]
     df_all = data[(data['area'].notna()) & (data['year'] == 2023)].set_index('territory')
     df_territory['tier'] = pd.cut(
-        pd.Series(df_territory['CFA World Index']),
+        pd.Series(df_territory[INDEX_KEY]),
         bins=TIER_BINS,
         labels=TIER_LABELS,
         right=False
     ).iloc[0]
     try:
-        df_territory['rank'] = df_all['CFA World Index'].rank(
+        df_territory['rank'] = df_all[INDEX_KEY].rank(
             ascending=False,
             method='min'
         ).loc[territory]
@@ -145,10 +152,10 @@ def update_scorecard_summary(territory):
 
     values = [
         get_value(df_territory, 'area', "{}"),
-        get_value(df_territory, 'Population, total', "{:,.3f} millions", divide=1e6),
-        get_value(df_territory, 'GDP per capita', "US${:,.0f}"),
-        get_value(df_territory, 'CFA World Index', "{}/100"),
-        get_value(df_territory, 'rank', "{:.0f}/157"),
+        get_value(df_territory, 'Popolazione (totale)', "{:,.3f} milioni", divide=1e6),
+        get_value(df_territory, 'PIL pro capite', "€{:,.0f}"),
+        get_value(df_territory, INDEX_KEY, "{}/100"),
+        get_value(df_territory, 'rank', "{:.0f}/21"),
         get_value(df_territory, 'tier', "{}"),
     ]
     return values
@@ -161,8 +168,8 @@ def update_scorecard_summary(territory):
 )
 def display_evolution(territory):
     area = data.query("territory == @territory")['area'].to_list()[0]
-    if territory != "World":
-        territory = [territory, area, 'World']
+    if territory != "Italia":
+        territory = [territory, area, 'Italia']
 
     df = data.query("territory == @territory").rename(
         columns={'year': 'Year', 'territory': 'Territory'}
@@ -170,11 +177,11 @@ def display_evolution(territory):
     fig = px.line(
         df,
         x='Year',
-        y='CFA World Index',
+        y=INDEX_KEY,
         color='Territory',
         color_discrete_sequence=SEQUENCE_COLOR,
         markers=True,
-        custom_data=['Territory', 'CFA World Index', 'Year']
+        custom_data=['Territory', INDEX_KEY, 'Year']
     )
     fig.update_traces(marker={'size': 10})
     template = (
@@ -206,10 +213,10 @@ def display_evolution(territory):
     Input("scorecard_territory", "value")
 )
 def display_radar(territory):
-    features = data.columns[8:23]
+    features = data.columns[9:24]
     area = data.query("territory == @territory")['area'].to_list()[0]
-    if territory != "World":
-        territory = [territory, area, 'World']
+    if territory != "Italia":
+        territory = [territory, area, 'Italia']
 
     df = data.query("territory == @territory and year == 2023").rename(
         columns={'territory': 'Territory'}
@@ -270,9 +277,9 @@ def display_radar(territory):
     Input("scorecard_territory", "value")
 )
 def display_table(territory):
-    features = data.columns[4:53]
+    features = data.columns[5:54]
     area = data.query("territory == @territory")['area'].to_list()[0]
-    world = "World"
+    world = "Italia"
 
     if territory == world:
         territory_list = [territory]
@@ -295,8 +302,8 @@ def display_table(territory):
     for feature in features:
         component_name = (
             feature + ": " +
-            metadata.loc[int(feature.split('Indicator ')[1])]['name']
-            if 'Indicator ' in feature else feature
+            metadata.loc[int(feature.split('Indicatore ')[1])]['name']
+            if 'Indicatore ' in feature else feature
         )
         score = df_territory[feature].values[0]
 

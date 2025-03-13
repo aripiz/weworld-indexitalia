@@ -7,15 +7,15 @@ import dash_bootstrap_components as dbc
 from configuration import SEQUENCE_COLOR
 
 # Options
-subindexes_list = [data.columns[4]]
-features_list = data.columns[4:23].to_list()
+subindexes_list = data.columns[5:9].to_list()
+dimensions_list = data.columns[9:24].to_list()
 years_list = data['year'].unique()
-components_list = [f"Indicator {num}: {metadata.loc[num]['name']}" for num in metadata.loc[1:30].index]
+components_list = [f"Indicatore {num}: {metadata.loc[num]['name']}" for num in metadata.loc[1:30].index]
 indicators_list = [f"{num}: {metadata.loc[num]['name']}" for num in metadata.loc[1:30].index]
-kind_list = ['Data', 'Scores']
+kind_list = ['Dato', 'Punteggio']
 territories_list = data['territory'].unique()
-auxiliary_list = metadata.loc[101:102]['name'].to_list()
-population_list = data.columns[83:86].to_list()
+auxiliary_list = metadata.loc[101:103]['name'].to_list()
+population_list = data.columns[84:87].to_list()
 
 # Data tabs
 tab_map_features = html.Div([
@@ -40,8 +40,8 @@ tab_map_features = html.Div([
             dbc.Label("Component"), 
             dcc.Dropdown(
                 id='feature',
-                options=features_list,
-                value=features_list[0],
+                options=subindexes_list + dimensions_list,
+                value=subindexes_list[0],
                 style={"width": "75%"}
             )], lg=8, xs=12),
         dbc.Col([
@@ -148,7 +148,7 @@ tab_correlations = html.Div([
             dbc.Label("Data (x)"),
             dcc.Dropdown(
                 id="corr_x",
-                options=subindexes_list + auxiliary_list,
+                options=subindexes_list + dimensions_list,
                 value=subindexes_list[0],
                 optionHeight=50
                 #style={"width": "75%"}
@@ -157,8 +157,8 @@ tab_correlations = html.Div([
             dbc.Label("Data (y)"),
             dcc.Dropdown(
                 id="corr_y",
-                options=subindexes_list + auxiliary_list,
-                value=auxiliary_list[1],
+                options=subindexes_list + dimensions_list,
+                value=subindexes_list[1],
                 optionHeight=50
                 #style={"width": "75%"}
             )], lg=3, xs=12),
@@ -217,8 +217,8 @@ tab_ranking = html.Div([
             dbc.Label("Component"),
             dcc.Dropdown(
                 id="ranking_feature",
-                options=features_list,
-                value=features_list[0],
+                options=subindexes_list + dimensions_list,
+                value=subindexes_list[0],
                 style={"width": "75%"}
             )], lg=8, xs=12),
         dbc.Col([
@@ -266,8 +266,8 @@ tab_evolution = html.Div([
             dbc.Label("Component"),
             dcc.Dropdown(
                 id="evolution_feature",
-                options=features_list + components_list,
-                value=features_list[0],
+                options=subindexes_list +  dimensions_list + components_list,
+                value=subindexes_list[0],
                 optionHeight=50,
                 #style={"width": "75%"},
                 multi=True
@@ -277,7 +277,7 @@ tab_evolution = html.Div([
             dcc.Dropdown(
                 id='evolution_territory',
                 options=territories_list,
-                value='World',
+                value='Italia',
                 #style={"width": "75%"},
                 multi=True
             )], lg=6, xs=12)
@@ -316,7 +316,7 @@ tab_radar = html.Div([
             dcc.Dropdown(
                 id='radar_territory',
                 options=territories_list,
-                value='World',
+                value='Italia',
                 style={"width": "75%"},
                 multi=True
             )], lg=9, xs=12),
@@ -366,7 +366,7 @@ tab_comparison = html.Div([
             dbc.Label("Data (x)"),
             dcc.Dropdown(
                 id="comp_x",
-                options=subindexes_list + auxiliary_list,
+                options=[subindexes_list[0]] + auxiliary_list,
                 value=subindexes_list[0],
                 #optionHeight=50,
                 #style={"width": "75%"}
@@ -375,8 +375,8 @@ tab_comparison = html.Div([
             dbc.Label("Data (y)"),
             dcc.Dropdown(
                 id="comp_y",
-                options=subindexes_list + auxiliary_list,
-                value=auxiliary_list[1],
+                options=[subindexes_list[0]] + auxiliary_list,
+                value=auxiliary_list[0],
                 #optionHeight=50
                 #style={"width": "75%"}
             )], lg=3, xs=12),
@@ -396,7 +396,7 @@ tab_comparison = html.Div([
                 years_list[-1],
                 step=1,
                 id='slider_year',
-                value=years_list[-2],
+                value=years_list[-1],
                 marks={str(year): str(year) for year in [years_list[0], years_list[-1]]},
                 tooltip={"placement": "bottom", "always_visible": True}
             )

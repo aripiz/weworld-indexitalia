@@ -4,9 +4,11 @@ import plotly.express as px
 import plotly.io as pio
 import pandas as pd
 from dash_bootstrap_templates import load_figure_template
-from index import data
+from index import data, geodata
 from configuration import (
     FIGURE_TEMPLATE,
+    GEO_KEY,
+    INDEX_KEY,
     TIER_COLORS,
     TIER_BINS,
     TIER_LABELS,
@@ -22,17 +24,20 @@ pio.templates.default = FIGURE_TEMPLATE
 # Home map
 def display_map():
     year = 2023
-    feature = 'CFA World Index'
+    feature = INDEX_KEY
     df = data[(data['area'].notna()) & (data['year'] == year)].rename(columns={'year': 'Year', 'area': 'Area'})
     df['Tier'] = pd.cut(df[feature], bins=TIER_BINS, labels=TIER_LABELS, right=False).cat.remove_unused_categories()
 
     fig = px.choropleth(
         df,
         locations='code',
+        geojson=geodata,
+        featureidkey=GEO_KEY,
+        fitbounds="locations",
         color='Tier',
         color_discrete_map=dict(zip(TIER_LABELS, TIER_COLORS)),
         category_orders={'Tier': TIER_LABELS},
-        custom_data=['territory', 'Area', feature, 'Tier', 'Year']
+        custom_data=['territory', 'Area', feature, 'Tier', 'Year'],
     )
 
     fig.update_layout(
@@ -51,15 +56,16 @@ def display_map():
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
         geo=dict(
             projection_type='natural earth',
-            showland=True,
-            showocean=True,
+            showland=False,
+            showocean=False,
             oceancolor=OCEAN_COLOR,
-            showlakes=True,
+            showlakes=False,
             lakecolor=OCEAN_COLOR,
             showrivers=False,
             projection_scale=1.0,
-            scope='world'
-        )
+            #scope='europe',
+            visible=False  # Questo nasconde tutto lo sfondo
+        ),
     )
 
     template = (

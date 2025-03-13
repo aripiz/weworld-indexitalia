@@ -4,6 +4,8 @@ import numpy as np
 import pandas as pd
 from dash import html
 
+from configuration import GEO_KEY
+
 # Significant figures rounding
 def sig_round(x, precision=3):
     return np.float64(f'{x:#.{precision}g}')
@@ -30,7 +32,7 @@ def get_score_change_arrow(value, equal_buffer=1.5):
 
 # Get area centroid for scorecard map
 def area_centroid(geodata, countries):
-    selected_countries = geodata[geodata['ADM0_A3'].isin(countries)]
+    selected_countries = geodata[geodata[GEO_KEY.split('.')[-1]].isin(countries)]
     combined_geometry = selected_countries.unary_union
     return {
         'lat': combined_geometry.centroid.y,

@@ -13,9 +13,6 @@ FIGURE_TEMPLATE = TEMPLATE.lower()
 DBC_CSS = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css"
 
 BRAND_COLOR = '#005D9E'
-
-LAND_COLOR = "#3B3B3B"
-OCEAN_COLOR = "#F2F2F2"
 TIER_COLORS = [
     "#D53A50",  # Red
     "#E97B4E",  # Orange
@@ -41,10 +38,16 @@ SEQUENCE_COLOR = [
 TIER_LABELS = ['Limitato', 'Minimo', 'Base', 'Moderato', 'Forte', 'Avanzato']
 TIER_BINS = [0, 45, 55, 65, 75, 85, 100]
 
+# Map configuration
+LAND_COLOR = "#3B3B3B"
+OCEAN_COLOR = "#F2F2F2"
+GEO_KEY = "properties.istat_code_num"
+INDEX_KEY = "WeWorld Index Italia"
+
 # Files link
-DATA_FILE = "https://raw.githubusercontent.com/aripiz/cfa-index/main/data/cfa-index-2024_data.csv"
-META_FILE = "https://raw.githubusercontent.com/aripiz/cfa-index/main/data//cfa-index-2024_metadata.csv"
-GEO_FILE = "https://raw.githubusercontent.com/aripiz/cfa-index/main/data/ne_110m_admin_0_countries.geojson"
+DATA_FILE = "../data/weworld-index-2025_data.csv" #"https://raw.githubusercontent.com/aripiz/cfa-index/main/data/cfa-index-2024_data.csv"
+META_FILE = "../data/weworld-index-2025_metadata.csv" #"https://raw.githubusercontent.com/aripiz/cfa-index/main/data//cfa-index-2024_metadata.csv"
+GEO_FILE = "../data/italy_regions_low.json"#"https://raw.githubusercontent.com/aripiz/cfa-index/main/data/ne_110m_admin_0_countries.geojson"
 NOTES_FILE = "" 
 #"https://raw.githubusercontent.com/aripiz/cfa-index/main/data//cfa-index-2024_notes.pdf"
 REPORT_FILE =  ""

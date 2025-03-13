@@ -12,9 +12,10 @@ from configuration import (
     SEQUENCE_COLOR,
     TIER_BINS, 
     TIER_COLORS, 
-    TIER_LABELS
+    TIER_LABELS,
+    GEO_KEY
 )
-from index import app, data, metadata
+from index import app, data, metadata, geodata
 from utilis import get_score_change_arrow, get_value, sig_format, sig_round
 
 load_figure_template(FIGURE_TEMPLATE)
@@ -50,6 +51,9 @@ def display_map_index(feature, year):
     fig = px.choropleth(
         df,
         locations='code',
+        geojson=geodata,
+        featureidkey=GEO_KEY,
+        fitbounds="locations",
         color='Tier',
         color_discrete_map=dict(zip(TIER_LABELS, TIER_COLORS)),
         category_orders={'Tier': TIER_LABELS},
@@ -61,13 +65,16 @@ def display_map_index(feature, year):
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
         geo=dict(
             projection_type='natural earth',
-            showland=True,
-            showocean=True,
+            showland=False,
+            showocean=False,
             oceancolor=OCEAN_COLOR,
-            showlakes=True,
+            showlakes=False,
             lakecolor=OCEAN_COLOR,
-            showrivers=False
-        )
+            showrivers=False,
+            projection_scale=1.0,
+            #scope='europe',
+            visible=False  # Questo nasconde tutto lo sfondo
+        ),
     )
 
     template = (
@@ -130,12 +137,15 @@ def display_map_indicators(indicator, year, kind):
 
     df = data.loc[data['year'] == year].rename(columns={'year': 'Year', 'area': 'Area'})
     
-    if kind == 'Data':
+    if kind == 'Dato':
         unit = metadata.loc[int(indicator)]['unit']
-        col = f'Indicator {int(indicator)} (data)'
+        col = f'Indicatore {int(indicator)} (dati)'
         fig = px.choropleth(
             df,
             locations='code',
+            geojson=geodata,
+            featureidkey=GEO_KEY,
+            fitbounds="locations",
             color=col,
             range_color=limits_scale,
             color_continuous_scale=colors,
@@ -148,12 +158,15 @@ def display_map_indicators(indicator, year, kind):
             f"Year: %{{customdata[3]}}"
             "<extra></extra>"
         )
-    elif kind == 'Scores':
-        unit = 'Scores'
-        col = f'Indicator {int(indicator)}'
+    elif kind == 'Punteggio':
+        unit = 'Punteggio'
+        col = f'Indicatore {int(indicator)}'
         fig = px.choropleth(
             df,
             locations='code',
+            geojson=geodata,
+            featureidkey=GEO_KEY,
+            fitbounds="locations",
             color=col,
             range_color=[0, 100],
             color_continuous_scale=TIER_COLORS,
@@ -172,13 +185,16 @@ def display_map_indicators(indicator, year, kind):
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
         geo=dict(
             projection_type='natural earth',
-            showland=True,
-            showocean=True,
+            showland=False,
+            showocean=False,
             oceancolor=OCEAN_COLOR,
-            showlakes=True,
+            showlakes=False,
             lakecolor=OCEAN_COLOR,
-            showrivers=False
-        )
+            showrivers=False,
+            projection_scale=1.0,
+            #scope='europe',
+            visible=False  # Questo nasconde tutto lo sfondo
+        ),
     )
     fig.update_layout(
         coloraxis_colorbar=dict(
@@ -221,6 +237,7 @@ def display_corr(x_data, y_data, population, year):
     x_data = x_data.split(":")[0]
     y_data = y_data.split(":")[0]
     corr = df.corr('spearman', numeric_only=True)
+    formatted_corr = f"{ corr.loc[x_data, y_data]:#.3g}" if pd.notna(corr.loc[x_data, y_data]) else "N/A"
     df['population_milions'] = df[population] / 1e6
 
     fig = px.scatter(
@@ -245,7 +262,7 @@ def display_corr(x_data, y_data, population, year):
     )
     fig.update_traces(hovertemplate=template)
     fig.update_layout(
-        title=f"Correlation coefficient: \u03c1\u209b = {corr.loc[x_data][y_data]:#.3g}",
+        title=f"Correlation coefficient: \u03c1\u209b = {formatted_corr}",
         legend=dict(
             orientation='h',
             yanchor="bottom",
@@ -282,6 +299,9 @@ def display_comparison(x_data, y_data, population, year):
     df = data[(data['area'].notna()) & (data['year'] == year)].rename(
         columns={'year': 'Year', 'area': 'Area'}
     )
+
+    corr = df.corr('spearman', numeric_only=True)
+    formatted_corr = f"{ corr.loc[x_data, y_data]:#.3g}" if pd.notna(corr.loc[x_data, y_data]) else "N/A"
     df['population_milions'] = df[population] / 1e6
     fig = px.scatter(
         df,
@@ -308,6 +328,7 @@ def display_comparison(x_data, y_data, population, year):
     if y_data == 'GDP per capita':
         fig.update_yaxes(type='log', tickprefix='US$')
     fig.update_layout(
+        title=f"Correlation coefficient: \u03c1\u209b = {formatted_corr}",
         legend=dict(
             orientation='h',
             yanchor="bottom",
