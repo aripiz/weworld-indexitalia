@@ -9,11 +9,11 @@ from configuration import SEQUENCE_COLOR
 # Options
 subindexes_list = data.columns[5:9].to_list()
 dimensions_list = data.columns[9:24].to_list()
-years_list = data['year'].unique()
+years_list = data['year'].unique().tolist()
 components_list = [f"Indicatore {num}: {metadata.loc[num]['name']}" for num in metadata.loc[1:30].index]
 indicators_list = [f"{num}: {metadata.loc[num]['name']}" for num in metadata.loc[1:30].index]
 kind_list = ['Dato', 'Punteggio']
-territories_list = data['territory'].unique()
+territories_list = data['territory'].unique().tolist()
 auxiliary_list = metadata.loc[101:103]['name'].to_list()
 population_list = data.columns[84:87].to_list()
 

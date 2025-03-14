@@ -12,10 +12,10 @@ tabs = dbc.Tabs(
         dbc.Tab(label="Mappa componenti", tab_id="map_features"),
         dbc.Tab(label="Mappa indicatori", tab_id="map_indicators"),
         dbc.Tab(label="Classifica", tab_id="ranking"),
-        dbc.Tab(label="Evoluzioni", tab_id="evolution"),
+        dbc.Tab(label="Serie storiche", tab_id="evolution"),
         dbc.Tab(label="Profili", tab_id="radar"),
         dbc.Tab(label="Correlazioni", tab_id="correlations"),
-        dbc.Tab(label="Confronto", tab_id="comparison")
+        dbc.Tab(label="Confronti", tab_id="comparison")
     ],
     id="data_tabs",
     active_tab="map_features",

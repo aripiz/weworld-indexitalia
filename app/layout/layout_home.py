@@ -1,3 +1,4 @@
+from turtle import st
 import dash_bootstrap_components as dbc
 from dash import dcc, html
 import plotly.express as px
@@ -41,30 +42,18 @@ def display_map():
     )
 
     fig.update_layout(
-        legend=dict(
-            title_text="Human Rights Implementation",
-            xanchor='right',
-            yanchor='top',
-            x=0.95,
-            y=0.92
-        ),
-        coloraxis_colorbar=dict(
-            title="Score",
-            x=0.92
-        ),
+        dragmode=False,
         showlegend=False,
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
         geo=dict(
             projection_type='natural earth',
             showland=False,
             showocean=False,
-            oceancolor=OCEAN_COLOR,
             showlakes=False,
-            lakecolor=OCEAN_COLOR,
             showrivers=False,
-            projection_scale=1.0,
+            projection_scale=1,
             #scope='europe',
-            visible=False  # Questo nasconde tutto lo sfondo
+            visible=False 
         ),
     )
 
@@ -110,21 +99,41 @@ home = dbc.Container(
                 children=[
                     html.H1("WeWorld Index Italia 2025"),
                     dcc.Markdown(opening_text, className='my-4'),
-                    html.P("Seleziona una regione sulla mappa per accedere alla sua scheda.", style={"text-align": "center"}),
-                    dcc.Loading(
-                        dcc.Graph(
-                            figure=display_map(),
-                            config={'displayModeBar': False, 'editable': False},
-                            id='map_home',
-                        ),
-                        color=SEQUENCE_COLOR[0]
-                    ),
-                    dcc.Markdown(description_text, className='my-4'),
                 ],
                 lg=12,
                 xs=12,
             ),
             className='mt-2',
+            justify='around'
+        ),
+        dbc.Row(
+            [
+            dbc.Col(
+                children=[
+                    dcc.Loading(
+                        dcc.Graph(
+                            figure=display_map(),
+                            config={'displayModeBar': False, 'editable': False,},
+                            id='map_home',
+                            style={"width": "100%", "height": "100%", "flex": "1"}
+                        ),
+                        color=SEQUENCE_COLOR[0]
+                    ),
+                    html.P("Seleziona una regione sulla mappa per accedere alla sua scheda.", style={"text-align": "center"}),
+
+                ],
+                lg=6,
+                xs=12
+            ),
+            dbc.Col(
+                children=[
+                    dcc.Markdown(description_text, className='my-4'),
+
+                ],
+                lg=6,
+                xs=12
+            ),],
+            className='mt-4',
             justify='around'
         ),
         dbc.Row(

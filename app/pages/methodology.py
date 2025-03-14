@@ -9,8 +9,8 @@ register_page(__name__, name=TITLE)
 # Tabs
 tabs = dbc.Tabs(
     children=[
-        dbc.Tab(label="Index Construction", tab_id="construction"),
-        dbc.Tab(label="Indicators List", tab_id="indicators")
+        dbc.Tab(label="Costruzione", tab_id="construction"),
+        dbc.Tab(label="Lista indicatori", tab_id="indicators")
     ],
     id="metho_tabs",
     active_tab="construction",

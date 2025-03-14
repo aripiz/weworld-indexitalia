@@ -1,7 +1,7 @@
 /* assets/styles.css */
 
 :root {
-    --bs-primary: #005D9E; /* Cambia con il colore desiderato */
+    --bs-primary: #DD9033; /* Cambia con il colore desiderato  #005D9E*/ 
 }
 
 /* Forza il colore nei bottoni */
@@ -25,10 +25,13 @@
     background-color: var(--bs-primary) !important;
 }
 
-.nav-tabs .nav-link.active {
+.bs-link {
     color: var(--bs-primary) !important;
 }
 
+.nav-tabs .nav-link.active {
+    color: var(--bs-primary) !important;
+}
 
 .nav-tabs .nav-link:hover {
     color: var(--bs-primary) !important;
@@ -38,6 +41,7 @@
     color: var(--bs-body-color) !important;
 }
 
+.
 
 /* Cambia il colore del cerchio selezionato */
 .form-check-input:checked {

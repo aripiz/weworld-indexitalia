@@ -5,7 +5,7 @@ import dash_bootstrap_components as dbc
 from configuration import SEQUENCE_COLOR
 
 # Options
-territories_list = data['territory'].unique()
+territories_list = data['territory'].unique().tolist()
 
 card = dbc.Container(
     children=[
@@ -52,12 +52,12 @@ card = dbc.Container(
                     dcc.Loading(
                         dcc.Graph(
                             id="scorecard_map", 
-                            style={'height': 200, 'width': 200},
+                            style={'height': "200px", 'width': "300px"},
                             config={'displayModeBar': False, 'editable': False}
                         ),
                         color=SEQUENCE_COLOR[0]
                     ),
-                    lg=2, 
+                    lg=3, 
                     xs=12, 
                     align='center'
                 ),
@@ -80,7 +80,7 @@ card = dbc.Container(
                         html.P(id="scorecard_score"),
                         html.H4("Posizione"),
                         html.P(id="scorecard_rank", style={'align': 'right'}),
-                        html.H4("Implementazione dei diritti umani"),
+                        html.H4("Livello di implementazione dei diritti umani"),
                         html.P(id="scorecard_group")
                     ],
                     lg=5, 

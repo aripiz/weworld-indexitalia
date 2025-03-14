@@ -49,8 +49,8 @@ navbar = dbc.NavbarSimple(
     ],
     brand=[
         html.Img(src="assets/logo_weworld_neg.png", height='30px'),
-        "\u200a\u200a",
-        html.Span("Index Italia", style={"font-size": "14px"}) 
+        "\u200a\u200a\u200a\u200a",
+        html.Span("Index Italia") 
     ],
     brand_href=BRAND_LINK,
     fixed='top',
@@ -64,7 +64,7 @@ footer = dbc.Navbar(
         children=[
             html.P(
                 "© 2025 WeWorld Onlus",
-                style={'font-size': 'xx-small'},
+                style={'font-size': 'x-small'},
                 className='mb-0'
             ),
             html.P(
@@ -72,7 +72,7 @@ footer = dbc.Navbar(
                     "credits: ",
                     html.A("aripiz", href=CREDITS_LINK, className='link')
                 ],
-                style={'font-size': 'xx-small'},
+                style={'font-size': 'x-small'},
                 className='mb-0'
             )
         ]
@@ -81,7 +81,7 @@ footer = dbc.Navbar(
         "display": "flex",
         'justify-content': 'space-between',
         'flex': '1',
-        'height': '15px'
+        'height': '20px'
     },
     fixed='bottom',
 )
@@ -93,7 +93,7 @@ content = dbc.Container(
         page_container
     ],
     class_name='mt-4',
-    style={'padding-top': '80px', 'padding-bottom': '60px'}
+    style={'padding-top': '40px', 'padding-bottom': '80px'}
 )
 
 # Main layout

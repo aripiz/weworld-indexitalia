@@ -1,5 +1,7 @@
 # render_scorecards.py
 
+from turtle import width
+from flask.cli import F
 import numpy as np
 import pandas as pd
 import plotly.express as px
@@ -61,31 +63,32 @@ def update_scorecard_title(territory):
     Output("scorecard_map", "figure"),
     Input('scorecard_territory', 'value')
 )
-
 def update_scorecard_map(territory):
-    if territory in areas:
-        df = data[(data['area'] == territory)].rename(columns={'year': 'Year', 'area': 'Area'})
-        lat, lon = centroids[territory].values()
+    print(territory)
+    df = data
+    df['fill'] = 'no'  # Default bianco per tutti
+    if territory == 'Italia':
+        df['fill'] = 'yes'
     else:
-        df = data[(data['territory'] == territory)].rename(columns={'year': 'Year', 'area': 'Area'})
-        lat, lon = centroids[df['code'].values[0]].values()
-        print(df['code'])
-
+        if territory in areas:
+            df.loc[df['area'] == territory, 'fill'] = 'yes'#.rename(columns={'year': 'Year', 'area': 'Area'})
+            lat, lon = centroids[territory].values()
+        else:
+            df.loc[df['territory'] == territory, 'fill'] = 'yes' #.rename(columns={'year': 'Year', 'area': 'Area'})
+            lat, lon = centroids[df['code'].values[0]].values()    
     fig = px.choropleth(
         df,
         locations='code',
+        featureidkey=GEO_KEY,
+        color='fill',
         geojson=geodata,
-        color_discrete_sequence=[LAND_COLOR],
-        hover_name='territory',
-        hover_data={
-            'code': False,
-            'Year': False,
-            'Area': False
-        },
+        color_discrete_map={'no': 'white', 'yes': LAND_COLOR},  # Definisce i colori specifici
         fitbounds="locations",
     )
     fig.update_layout(
         showlegend=False,
+        hovermode=False,
+        dragmode=False,
         margin={
             "r": 0,
             "t": 0,
@@ -93,33 +96,31 @@ def update_scorecard_map(territory):
             "b": 0
         },
         geo=dict(
-            projection_type='orthographic',
-            projection_scale=1.0,
+            projection_type='natural earth',
+            projection_scale=2,
             showland=False,
             showocean=False,
-            #oceancolor=OCEAN_COLOR,
             showlakes=False,
-            #lakecolor=OCEAN_COLOR,
             showrivers=False,
             scope='europe',
             visible=False
         )
     )
-    if territory == 'Italia':
-        fig.update_layout(
-            geo=dict(
-                center=dict(lat=0, lon=0),
-                projection_rotation=dict(lat=0, lon=0),
-                landcolor=LAND_COLOR
-            )
-        )
-    else:
-        fig.update_layout(
-            geo=dict(
-                center=dict(lat=lat, lon=lon),
-                projection_rotation=dict(lat=lat, lon=lon)
-            )
-        )
+    # if territory == 'Italia':
+    #     fig.update_layout(
+    #         geo=dict(
+    #             center=dict(lat=0, lon=0),
+    #             projection_rotation=dict(lat=0, lon=0),
+    #             landcolor=LAND_COLOR
+    #         )
+    #     )
+    # else:
+    #     fig.update_layout(
+    #         geo=dict(
+    #             center=dict(lat=lat, lon=lon),
+    #             projection_rotation=dict(lat=lat, lon=lon)
+    #         )
+    #     )
     return fig
 
 
@@ -152,8 +153,8 @@ def update_scorecard_summary(territory):
 
     values = [
         get_value(df_territory, 'area', "{}"),
-        get_value(df_territory, 'Popolazione (totale)', "{:,.3f} milioni", divide=1e6),
-        get_value(df_territory, 'PIL pro capite', "€{:,.0f}"),
+        get_value(df_territory, 'Popolazione (totale)', "{:.3f} milioni", divide=1e6),
+        get_value(df_territory, 'PIL pro capite', "€{:.0f}",),
         get_value(df_territory, INDEX_KEY, "{}/100"),
         get_value(df_territory, 'rank', "{:.0f}/21"),
         get_value(df_territory, 'tier', "{}"),
@@ -174,6 +175,7 @@ def display_evolution(territory):
     df = data.query("territory == @territory").rename(
         columns={'year': 'Year', 'territory': 'Territory'}
     )
+    df['fill'] = df['Territory'].apply(lambda x: 0.2 if x == 'Italia' else 0.1)
     fig = px.line(
         df,
         x='Year',
