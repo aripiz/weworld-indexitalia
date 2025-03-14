@@ -1,5 +1,50 @@
 /* assets/styles.css */
 
+:root {
+    --bs-primary: #005D9E; /* Cambia con il colore desiderato */
+}
+
+/* Forza il colore nei bottoni */
+.btn-primary {
+    background-color: var(--bs-primary) !important;
+    border-color: var(--bs-primary) !important;
+}
+
+/* Forza il colore nei link */
+.text-primary {
+    color: var(--bs-primary) !important;
+}
+
+/* Forza il colore nei bordi */
+.border-primary {
+    border-color: var(--bs-primary) !important;
+}
+
+/* Forza il colore negli sfondi */
+.bg-primary {
+    background-color: var(--bs-primary) !important;
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--bs-primary) !important;
+}
+
+
+.nav-tabs .nav-link:hover {
+    color: var(--bs-primary) !important;
+}
+
+.nav-tabs .nav-link {
+    color: var(--bs-body-color) !important;
+}
+
+
+/* Cambia il colore del cerchio selezionato */
+.form-check-input:checked {
+    background-color: var(--bs-primary) !important;
+    border-color: var(--bs-primary) !important;
+}
+
 /* Stile per l'intestazione della tabella */
 .table-container {
     height: 60vh; /* Imposta l'altezza massima del contenitore della tabella */
@@ -68,3 +113,5 @@
     min-width: 60px; /* Adeguato per numeri con segno e diverse lunghezze */
     /*padding-left: 10px; /* Spazio tra il numero e la freccia */
 }
+
+

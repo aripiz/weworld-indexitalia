@@ -237,7 +237,9 @@ def display_radar(territory):
         color='Territory',
         range_r=[0, 100],
         start_angle=90,
-        custom_data=['Territory', 'Dimension', 'Score']
+        custom_data=['Territory', 'Dimension', 'Score'],
+        color_discrete_sequence=SEQUENCE_COLOR,
+
     )
     template = (
         "<b>%{customdata[0]}</b><br><br>" +
