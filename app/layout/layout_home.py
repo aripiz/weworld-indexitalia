@@ -152,5 +152,4 @@ home = dbc.Container(
         #     justify='around'
         # ),
     ],
-    fluid=True,
 )

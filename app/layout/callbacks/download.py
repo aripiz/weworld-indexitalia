@@ -59,6 +59,6 @@ def download_excel(n_clicks, features, territories):
             df_meta.to_excel(writer, sheet_name='indicators_metadata')
             df_data.to_excel(writer, sheet_name='data', float_format='%#.3g')
         
-        return dcc.send_bytes(buffer.getvalue(), filename="cfa-index-2024_data.xlsx")
+        return dcc.send_bytes(buffer.getvalue(), filename="weworld-indexitalia-2025_data.xlsx")
     
     return None

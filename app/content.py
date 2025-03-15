@@ -15,7 +15,6 @@ from configuration import (
     NOTES_FILE,
     REPORT_FILE,
     CREDITS_LINK,
-    BRAND_COLOR
 )
 from layout.layout_download import modal_data_download
 
@@ -93,7 +92,7 @@ content = dbc.Container(
         page_container
     ],
     class_name='mt-4',
-    style={'padding-top': '40px', 'padding-bottom': '80px'}
+    style={'padding-top': '40px', 'padding-bottom': '120px'}
 )
 
 # Main layout
@@ -103,7 +102,8 @@ app.layout = dbc.Container(
         content,
         footer
     ],
-    fluid=False,
+    fluid=True,
     className="dbc dbc-ag-grid",
+
     # style={"display": "flex", "flex-direction": "column"}
 )

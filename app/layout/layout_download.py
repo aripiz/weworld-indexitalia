@@ -5,35 +5,35 @@ from dash import dcc, html
 import dash_bootstrap_components as dbc
 
 # Options
-features_list = data.columns[4:]
+features_list = data.columns[5:]
 territories_list = data['territory'].unique()
 
 # Modal window
 modal_data_download = dbc.Modal(
     [
-        dbc.ModalHeader(dbc.ModalTitle("Data download"), close_button=False),
+        dbc.ModalHeader(dbc.ModalTitle("Download dei dati dell'Indice"), close_button=False),
         dbc.ModalBody(
             html.Div([
-                dbc.Label('Download all available data or select a subset from the menus'),
+                dbc.Label('Scarica tutti i dati disponibili o scegli dai menù i dati da scaricare.'),
                 dbc.Row(
                     dbc.Col([
-                        dbc.Label("Select features"),
+                        dbc.Label("Componenti:"),
                         dcc.Dropdown(
                             id='download_indicator',
                             options=features_list,
                             multi=True,
-                            # placeholder="All features",
+                            placeholder="Tutte le componenti",
                             style={"width": "100%"}
                         ),
                     ], xs=12), className='mt-2'),
                 dbc.Row(
                     dbc.Col([
-                        dbc.Label('Select territories'),
+                        dbc.Label('Territori:'),
                         dcc.Dropdown(
                             id='download_territory',
                             options=territories_list,
                             multi=True,
-                            # placeholder="All territories",
+                            placeholder="Tutti i territori",
                             style={"width": "100%"}
                         ),
                     ], xs=12), className='mt-2'),
