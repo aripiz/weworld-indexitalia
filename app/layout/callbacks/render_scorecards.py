@@ -2,6 +2,7 @@
 
 from turtle import width
 from flask.cli import F
+from matplotlib import legend
 import numpy as np
 import pandas as pd
 import plotly.express as px
@@ -64,7 +65,6 @@ def update_scorecard_title(territory):
     Input('scorecard_territory', 'value')
 )
 def update_scorecard_map(territory):
-    print(territory)
     df = data
     df['fill'] = 'no'  # Default bianco per tutti
     if territory == 'Italia':
@@ -172,18 +172,17 @@ def display_evolution(territory):
     if territory != "Italia":
         territory = [territory, area, 'Italia']
 
-    df = data.query("territory == @territory").rename(
-        columns={'year': 'Year', 'territory': 'Territory'}
-    )
-    df['fill'] = df['Territory'].apply(lambda x: 0.2 if x == 'Italia' else 0.1)
+    df = data.query("territory == @territory")
+    
+    df['fill'] = df['territory'].apply(lambda x: 0.2 if x == 'Italia' else 0.1)
     fig = px.line(
         df,
-        x='Year',
+        x='year',
         y=INDEX_KEY,
-        color='Territory',
+        color='territory',
         color_discrete_sequence=SEQUENCE_COLOR,
         markers=True,
-        custom_data=['Territory', INDEX_KEY, 'Year']
+        custom_data=['territory', INDEX_KEY, 'year']
     )
     fig.update_traces(marker={'size': 10})
     template = (
@@ -195,7 +194,8 @@ def display_evolution(territory):
     fig.update_traces(hovertemplate=template)
     fig.update_layout(
         legend_title='Territorio',
-        xaxis=dict(tickvals=df['Year'].unique()),
+        xaxis_title='Anno',
+        xaxis=dict(tickvals=df['year'].unique()),
         legend=dict(
             orientation='h',
             yanchor="bottom",
