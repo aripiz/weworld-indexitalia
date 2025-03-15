@@ -1,8 +1,5 @@
 # render_scorecards.py
 
-from turtle import width
-from flask.cli import F
-from matplotlib import legend
 import numpy as np
 import pandas as pd
 import plotly.express as px
@@ -14,7 +11,6 @@ from dash import Input, Output, html
 
 from index import app, data, geodata, metadata
 from configuration import (
-    OCEAN_COLOR, 
     SEQUENCE_COLOR, 
     TIER_LABELS, 
     TIER_BINS,
