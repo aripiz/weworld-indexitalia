@@ -1,3 +1,4 @@
+from enum import auto
 import dash_bootstrap_components as dbc
 from dash import dcc, html
 import plotly.express as px
@@ -25,8 +26,8 @@ pio.templates.default = FIGURE_TEMPLATE
 def display_map():
     year = 2023
     feature = INDEX_KEY
-    df = data[(data['area'].notna()) & (data['year'] == year)].rename(columns={'year': 'Year', 'area': 'Area'})
-    df['Tier'] = pd.cut(df[feature], bins=TIER_BINS, labels=TIER_LABELS, right=False).cat.remove_unused_categories()
+    df = data[(data['area'].notna()) & (data['year'] == year)].copy()
+    df['tier'] = pd.cut(df[feature], bins=TIER_BINS, labels=TIER_LABELS, right=False).cat.remove_unused_categories()
 
     fig = px.choropleth(
         df,
@@ -34,15 +35,16 @@ def display_map():
         geojson=geodata,
         featureidkey=GEO_KEY,
         fitbounds="locations",
-        color='Tier',
+        color='tier',
         color_discrete_map=dict(zip(TIER_LABELS, TIER_COLORS)),
-        category_orders={'Tier': TIER_LABELS},
-        custom_data=['territory', 'Area', feature, 'Tier', 'Year'],
+        category_orders={'tier': TIER_LABELS},
+        custom_data=['territory', 'area', feature, 'tier', 'year'],
     )
 
     fig.update_layout(
         dragmode=False,
         showlegend=False,
+        autosize=True,
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
         geo=dict(
             projection_type='natural earth',
@@ -50,7 +52,6 @@ def display_map():
             showocean=False,
             showlakes=False,
             showrivers=False,
-            projection_scale=1,
             #scope='europe',
             visible=False 
         ),
@@ -60,8 +61,8 @@ def display_map():
         "<b>%{customdata[0]}</b><br>"
         + "<i>%{customdata[1]}</i><br><br>"
         + f"{feature}: " + "%{customdata[2]:#.3g}/100<br>"
-        + "Human Rights Implementation: %{customdata[3]}<br><br>"
-        + "Year: %{customdata[4]}"
+        + "Livello di implementazione dei diritti umani: %{customdata[3]}<br><br>"
+        #+ "Anno: %{customdata[4]}"
         + "<extra></extra>"
     )
     fig.update_traces(hovertemplate=template)
@@ -70,19 +71,20 @@ def display_map():
 
 # Text
 opening_text = '''
-The **ChildFund Alliance World Index 2024 Edition** is a flagship report by **ChildFund Alliance**. It is a tool designed to **measure the living conditions of women and children worldwide** by assessing the promotion, exercise, and violation of their rights.
+Il **WeWorld Index Italia 2025** è un rapporto originale di WeWorld che, giunto alla sua quarta edizione, fornisce un'istantanea delle condizioni di vita di donne, bambini e bambine in Italia.
 '''
 
 description_text = '''
-ChildFund Alliance World Index is formerly known as the WeWorld Index and published annually since 2015 by WeWorld, the Italian member of ChildFund Alliance. The Index ranks **157 countries** from 2015 to 2023 combining **30 different indicators.** For each territory, an absolute 0-100 score is computed, aiming to inquire the implementation of human rights for children and women at the country, regional area, and world level.
+WeWorld Index Italia classifica le 21 regioni italiane combinando 30 diversi indicatori con dati dal 2018 al 2023. 
+Per ogni territorio viene calcolato un punteggio assoluto da 0 a 100, con l'obiettivo di indagare l'implementazione dei diritti umani per donne e minori a livello locale, regionale e nazionale.
 
-Explore the dashboard for more details:
+Esplora la dashboard per maggiori dettagli:
+- **[Schede di valutazione](/scorecards):** Le schede di valutazione delle 21 regioni italiane offrono una panoramica dei punteggi e delle classifiche specifiche per ciascuna regione, analizzando le performance degli indicatori e permettendo una visione dettagliata della situazione a livello territoriale.
+- **[Dati](/data):** Accedi ai dati completi che costituiscono l'Indice, con la possibilità di esplorare mappe interattive e grafici dinamici per un'analisi approfondita e chiara.
+- **[Methodologia](/methodology):** Scopri la metodologia utilizzata per raccogliere e analizzare i dati, comprendendo i criteri e i processi che guidano la costruzione dell'Indice.
 
-- **[Scorecards](/scorecards):** Country scorecards showing scores and rankings based on various indicators.
-- **[Data](/data):** Access detailed data that make up the Index, with the ability to view interactive maps and charts.
-- **[Methodology](/methodology):** Description of the methodology used to collect and analyze data.
-
-Navigate through these sections to better understand the impact of the ChildFund Alliance World Index and discover how the rights of women and children are promoted, exercised, and violated in different countries. All resources, including full reports and datasets, are available to download.
+Naviga attraverso queste sezioni per comprendere appieno l'impatto del WeWorld Index Italia 2025 e per esplorare come i diritti delle donne e dei bambini vengano implementati o violati nel territorio italiano. 
+Tutte le informazioni e i dataset sono disponibili per il download, offrendoti un accesso diretto alle risorse.
 '''
 
 about_text = f'''
@@ -96,7 +98,7 @@ home = dbc.Container(
         dbc.Row(
             dbc.Col(
                 children=[
-                    html.H1("WeWorld Index Italia 2025"),
+                    html.H1("WeWorld Index Italia 2025", className='text-center'),
                     dcc.Markdown(opening_text, className='my-4'),
                 ],
                 lg=12,
@@ -109,44 +111,46 @@ home = dbc.Container(
             [
             dbc.Col(
                 children=[
+                    dcc.Markdown("### Esplora i dati", className='my-4'),
+                    dcc.Markdown(description_text, className='my-4'),
+
+                ],
+                lg=5,
+                xs=12
+            ),
+            dbc.Col(
+                children=[
                     dcc.Loading(
                         dcc.Graph(
                             figure=display_map(),
                             config={'displayModeBar': False, 'editable': False,},
                             id='map_home',
-                            style={"width": "100%", "height": "100%", "flex": "1"}
+                            #style={'width': '100%', 'height': '80vh'},
+                            className="d-flex justify-content-center" 
                         ),
                         color=SEQUENCE_COLOR[0]
                     ),
-                    html.P("Seleziona una regione sulla mappa per accedere alla sua scheda.", style={"text-align": "center"}),
+                    dcc.Markdown("_Clicca su una regione per accedere alla sua scheda di valutazione._", style={"text-align": "center"})
 
                 ],
-                lg=6,
-                xs=12
-            ),
-            dbc.Col(
-                children=[
-                    dcc.Markdown(description_text, className='my-4'),
-
-                ],
-                lg=6,
+                lg=7,
                 xs=12
             ),],
             className='mt-4',
             justify='around'
         ),
-        dbc.Row(
-            dbc.Col(
-                children=[
-                    html.H4("About ChildFund Alliance"),
-                    dcc.Markdown(about_text)
-                ],
-                lg=12,
-                xs=12
-            ),
-            className='mt-4',
-            justify='around'
-        ),
+        # dbc.Row(
+        #     dbc.Col(
+        #         children=[
+        #             html.H4("About ChildFund Alliance"),
+        #             dcc.Markdown(about_text)
+        #         ],
+        #         lg=12,
+        #         xs=12
+        #     ),
+        #     className='mt-4',
+        #     justify='around'
+        # ),
     ],
     fluid=True,
 )

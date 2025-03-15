@@ -16,7 +16,7 @@ from configuration import (
     GEO_KEY
 )
 from index import app, data, metadata, geodata
-from utilis import get_score_change_arrow, get_value, sig_format, sig_round
+from utilis import get_score_change_arrow, sig_format, sig_round
 
 load_figure_template(FIGURE_TEMPLATE)
 pio.templates.default = FIGURE_TEMPLATE
@@ -38,10 +38,9 @@ def display_map_index(feature, year):
     Returns:
         plotly.graph_objs._figure.Figure: The choropleth map figure.
     """
-    df = data[(data['area'].notna()) & (data['year'] == year)].rename(
-        columns={'year': 'Year', 'area': 'Area'}
-    )
-    df['Tier'] = pd.cut(
+    df = data[(data['area'].notna()) & (data['year'] == year)].copy()
+
+    df['tier'] = pd.cut(
         df[feature],
         bins=TIER_BINS,
         labels=TIER_LABELS,
@@ -54,14 +53,14 @@ def display_map_index(feature, year):
         geojson=geodata,
         featureidkey=GEO_KEY,
         fitbounds="locations",
-        color='Tier',
+        color='tier',
         color_discrete_map=dict(zip(TIER_LABELS, TIER_COLORS)),
-        category_orders={'Tier': TIER_LABELS},
-        custom_data=['territory', 'Area', feature, 'Tier', 'Year']
+        category_orders={'tier': TIER_LABELS},
+        custom_data=['territory', 'area', feature, 'tier', 'year']
     )
 
     fig.update_layout(
-        legend=dict(title_text="Human Rights<br>Implementation"),
+        legend=dict(title_text="Livello di implementazione<br>dei diritti umani"),
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
         geo=dict(
             projection_type='natural earth',
@@ -81,8 +80,8 @@ def display_map_index(feature, year):
         "<b>%{customdata[0]}</b><br>"
         "<i>%{customdata[1]}</i><br><br>"
         f"{feature}: %{{customdata[2]:#.3g}}/100<br>"
-        f"Human Rights Implementation: %{{customdata[3]}}<br><br>"
-        f"Year: %{{customdata[4]}}"
+        f"Livello di implementazione dei diritti umani: %{{customdata[3]}}<br><br>"
+        f"Anno: %{{customdata[4]}}"
         "<extra></extra>"
     )
     fig.update_traces(hovertemplate=template)
@@ -135,11 +134,11 @@ def display_map_indicators(indicator, year, kind):
             metadata.loc[int(indicator)]['best_value']
         ]
 
-    df = data.loc[data['year'] == year].rename(columns={'year': 'Year', 'area': 'Area'})
+    df = data.loc[data['year'] == year].copy()
     
     if kind == 'Dato':
         unit = metadata.loc[int(indicator)]['unit']
-        col = f'Indicatore {int(indicator)} (dati)'
+        col = f'Indicatore {int(indicator)} (dato)'
         fig = px.choropleth(
             df,
             locations='code',
@@ -149,13 +148,13 @@ def display_map_indicators(indicator, year, kind):
             color=col,
             range_color=limits_scale,
             color_continuous_scale=colors,
-            custom_data=['territory', 'Area', col, 'Year']
+            custom_data=['territory', 'area', col, 'year']
         )
         template = (
             "<b>%{customdata[0]}</b><br>"
             "<i>%{customdata[1]}</i><br><br>"
             f"{name}: %{{customdata[2]:#.3g}} {unit}<br><br>"
-            f"Year: %{{customdata[3]}}"
+            f"Anno: %{{customdata[3]}}"
             "<extra></extra>"
         )
     elif kind == 'Punteggio':
@@ -170,13 +169,13 @@ def display_map_indicators(indicator, year, kind):
             color=col,
             range_color=[0, 100],
             color_continuous_scale=TIER_COLORS,
-            custom_data=['territory', 'Area', col, 'Year']
+            custom_data=['territory', 'area', col, 'year']
         )
         template = (
             "<b>%{customdata[0]}</b><br>"
             "<i>%{customdata[1]}</i><br><br>"
             f"{col}: %{{customdata[2]:#.3g}}/100<br><br>"
-            f"Year: %{{customdata[3]}}"
+            f"Anno: %{{customdata[3]}}"
             "<extra></extra>"
         )
 
@@ -196,18 +195,19 @@ def display_map_indicators(indicator, year, kind):
             visible=False  # Questo nasconde tutto lo sfondo
         ),
     )
-    fig.update_layout(
-        coloraxis_colorbar=dict(
-            len=0.5,
-            title=unit,
-            orientation='h',
-            yanchor="bottom",
-            y=-0.3,
-            xanchor="left",
-            x=0.01,
-            yref="container"
-        ),
-    )
+    fig.update_layout(coloraxis_colorbar=dict(title=unit, x=0.92,  len=0.5,))
+    # fig.update_layout(
+    #     coloraxis_colorbar=dict(
+    #         len=0.5,
+    #         title=unit,
+    #         orientation='h',
+    #         yanchor="bottom",
+    #         y=-0.3,
+    #         xanchor="center",
+    #         x=0.5,
+    #         yref="paper"
+    #     ),
+    # )
     return fig
 
 
@@ -231,9 +231,8 @@ def display_corr(x_data, y_data, population, year):
     Returns:
         plotly.graph_objs._figure.Figure: The correlation scatter plot.
     """
-    df = data[(data['area'].notna()) & (data['year'] == year)].rename(
-        columns={'year': 'Year', 'area': 'Area'}
-    )
+    df = data[(data['area'].notna()) & (data['year'] == year)].copy()
+    
     x_data = x_data.split(":")[0]
     y_data = y_data.split(":")[0]
     corr = df.corr('spearman', numeric_only=True)
@@ -245,10 +244,10 @@ def display_corr(x_data, y_data, population, year):
         x=x_data,
         y=y_data,
         size=population,
-        color='Area',
+        color='area',
         color_discrete_sequence=SEQUENCE_COLOR,
         size_max=50,
-        custom_data=['territory', 'Area', x_data, y_data, 'population_milions', 'Year']
+        custom_data=['territory', 'area', x_data, y_data, 'population_milions', 'year']
     )
 
     template = (
@@ -256,14 +255,15 @@ def display_corr(x_data, y_data, population, year):
         "<i>%{customdata[1]}</i><br><br>"
         f"{x_data}: %{{customdata[2]:#.3g}}/100<br>"
         f"{y_data}: %{{customdata[3]:#.3g}}/100<br><br>"
-        f"{population}: %{{customdata[4]:,.3f}} millions<br><br>"
-        f"Year: %{{customdata[5]}}"
+        f"{population}: %{{customdata[4]:.3f}} milioni<br><br>"
+        f"Anno: %{{customdata[5]}}"
         "<extra></extra>"
     )
     fig.update_traces(hovertemplate=template)
     fig.update_layout(
-        title=f"Correlation coefficient: \u03c1\u209b = {formatted_corr}",
+        title=f"Coefficiente di correlazione : \u03c1\u209b = {formatted_corr}",
         legend=dict(
+            title = 'Area',
             orientation='h',
             yanchor="bottom",
             y=-0.3,
@@ -296,9 +296,7 @@ def display_comparison(x_data, y_data, population, year):
     Returns:
         plotly.graph_objs._figure.Figure: The comparison scatter plot.
     """
-    df = data[(data['area'].notna()) & (data['year'] == year)].rename(
-        columns={'year': 'Year', 'area': 'Area'}
-    )
+    df = data[(data['area'].notna()) & (data['year'] == year)].copy()
 
     corr = df.corr('spearman', numeric_only=True)
     formatted_corr = f"{ corr.loc[x_data, y_data]:#.3g}" if pd.notna(corr.loc[x_data, y_data]) else "N/A"
@@ -308,28 +306,42 @@ def display_comparison(x_data, y_data, population, year):
         x=x_data,
         y=y_data,
         size=population,
-        color='Area',
+        color='area',
         color_discrete_sequence=SEQUENCE_COLOR,
         size_max=50,
-        custom_data=['territory', 'Area', x_data, y_data, 'population_milions', 'Year']
+        custom_data=['territory', 'area', x_data, y_data, 'population_milions', 'year']
     )
     template = (
         "<b>%{customdata[0]}</b><br>"
         "<i>%{customdata[1]}</i><br><br>"
         f"{x_data}: %{{customdata[2]:#.3g}}/100<br>"
         f"{y_data}: %{{customdata[3]:#.3g}}/100<br><br>"
-        f"{population}: %{{customdata[4]:,.3f}} millions<br><br>"
-        f"Year: %{{customdata[5]}}"
+        f"{population}: %{{customdata[4]:.3f}} milioni<br><br>"
+        f"Anno: %{{customdata[5]}}"
         "<extra></extra>"
     )
     fig.update_traces(hovertemplate=template)
-    if x_data == 'GDP per capita':
-        fig.update_xaxes(type='log', tickprefix='US$')
-    if y_data == 'GDP per capita':
-        fig.update_yaxes(type='log', tickprefix='US$')
+    if x_data == 'PIL per abitante':
+        fig.update_xaxes(type='log', tickprefix='€')
+    if y_data == 'PIL per abitante':
+        fig.update_yaxes(type='log', tickprefix='€')
+    
+    x_source = metadata.query("name == @x_data")['source'].values[0] if metadata.query("name == @x_data")['source'].any() else "WeWorld"
+    y_source = metadata.query("name == @y_data")['source'].values[0] if metadata.query("name == @y_data")['source'].any() else "WeWorld"
+    sources_text = f"Fonti: {x_source}, {y_source}"
+    fig.add_annotation(
+            showarrow=False,
+            text=sources_text,
+            font=dict(size=10), 
+            xref='x domain',
+            x=0.5,
+            yref='y domain',
+            y=-0.2
+        )
     fig.update_layout(
-        title=f"Correlation coefficient: \u03c1\u209b = {formatted_corr}",
+        title=f"Coefficiente di correlazione: \u03c1\u209b = {formatted_corr}",
         legend=dict(
+            title = 'Area',
             orientation='h',
             yanchor="bottom",
             y=-0.3,
@@ -363,16 +375,16 @@ def display_ranking(feature, year):
     final = df[df['year'] == year][['territory', feature]]
     initial = df[df['year'] == years_list[0]][['territory', feature]]
 
-    initial['Rank'] = initial[feature].rank(ascending=False, method='min')
-    final['Rank'] = final[feature].rank(ascending=False, method='min')
+    initial['Posizione'] = initial[feature].rank(ascending=False, method='min')
+    final['Posizione'] = final[feature].rank(ascending=False, method='min')
 
-    final[f'Score change from {years_list[0]}'] = (final[feature] - initial[feature]).apply(sig_round)
-    final[f'Rank change from {years_list[0]}'] = initial['Rank'] - final['Rank']
+    final[f'Variazione di punteggio dal {years_list[0]}'] = (final[feature] - initial[feature]).apply(sig_round)
+    final[f'Varizione di posizione dal {years_list[0]}'] = initial['Posizione'] - final['Posizione']
 
-    final = final.reset_index().rename(columns={'territory': 'Territory', feature: 'Score'}).sort_values('Rank')
-    rank_change_col = f'Rank change from {years_list[0]}'
-    score_change_col = f'Score change from {years_list[0]}'
-    final = final.set_index(['Rank', 'Territory'], drop=True)
+    final = final.reset_index().rename(columns={'territory': 'Territorio', feature: 'Punteggio'}).sort_values('Posizione')
+    rank_change_col = f'Varizione di posizione dal {years_list[0]}'
+    score_change_col = f'Variazione di punteggio dal {years_list[0]}'
+    final = final.set_index(['Posizione', 'Territorio'], drop=True)
 
     rows = []
     for idx, row in final.iterrows():
@@ -380,7 +392,7 @@ def display_ranking(feature, year):
             html.Tr([
                 html.Td(idx[0]),
                 html.Td(idx[1]),
-                html.Td(sig_format(row['Score']), className='number-cell'),
+                html.Td(sig_format(row['Punteggio']), className='number-cell'),
                 html.Td(
                     html.Div([
                         get_score_change_arrow(row[score_change_col]),
@@ -399,7 +411,7 @@ def display_ranking(feature, year):
         )
 
     table = dbc.Table(
-        [html.Thead(html.Tr([html.Th(col) for col in ['Rank', 'Territory', 'Score', score_change_col, rank_change_col]]))] +
+        [html.Thead(html.Tr([html.Th(col) for col in ['Posizione', 'Territorio', 'Punteggio', score_change_col, rank_change_col]]))] +
         [html.Tbody(rows)],
         bordered=False,
         hover=True,
@@ -427,33 +439,33 @@ def display_evolution(component, territory):
     Returns:
         plotly.graph_objs._figure.Figure: The evolution plot.
     """
-    df = data.query("territory == @territory").rename(columns={'year': 'Year', 'territory': 'Territory'})
+    df = data.query("territory == @territory").copy()
     if isinstance(component, list):
-        component = [c.split(": ")[0] for c in component]
+        component = [c.split("Indicatore: ")[0] for c in component]
     else:
         component = component.split(": ")[0]
-    df = pd.melt(df, id_vars=['Territory', 'Year'], value_vars=component, var_name='Component', value_name='Score')
+    df = pd.melt(df, id_vars=['territory', 'year'], value_vars=component, var_name='component', value_name='score')
     fig = px.line(
         df,
-        x='Year',
-        y='Score',
-        color='Territory',
-        line_dash='Component',
+        x='year',
+        y='score',
+        color='territory',
+        line_dash='component',
         markers=True,
         color_discrete_sequence=SEQUENCE_COLOR,
-        custom_data=['Territory', 'Component', 'Score', 'Year']
+        custom_data=['territory', 'component', 'score', 'year']
     )
     template = (
         "<b>%{customdata[0]}</b><br><br>"
         "%{customdata[1]}: %{customdata[2]:#.3g}/100<br><br>"
-        "Year: %{customdata[3]}"
+        "Anno: %{customdata[3]}"
         "<extra></extra>"
     )
     fig.update_traces(hovertemplate=template, marker={'size': 10})
     fig.update_layout(
-        legend_title='Territory, Component',
-        xaxis=dict(tickvals=df['Year'].unique()),
-        yaxis=dict(title='Score'),
+        legend_title='Territorio, Componente',
+        xaxis=dict(tickvals=df['year'].unique()),
+        yaxis=dict(title='Punteggio'),
         legend=dict(
             orientation='h',
             yanchor="bottom",
@@ -484,25 +496,25 @@ def display_radar(territories, year):
         plotly.graph_objs._figure.Figure: The radar chart.
     """
     features = data.columns[8:23]
-    df = data.query("territory == @territories and year==@year").rename(columns={'year': 'Year', 'territory': 'Territory'})
-    df = pd.melt(df, id_vars=['Territory', 'Year'], value_vars=features, var_name='Dimension', value_name='Score')
+    df = data.query("territory == @territories and year==@year").copy()
+    df = pd.melt(df, id_vars=['territory', 'year'], value_vars=features, var_name='dimension', value_name='score')
     tick_labels = [f.replace(' ', '<br>') for f in features]
     fig = px.line_polar(
         df,
-        theta='Dimension',
-        r='Score',
+        theta='dimension',
+        r='score',
         line_close=True,
-        color='Territory',
-        line_dash='Year',
+        color='territory',
+        line_dash='year',
         range_r=[0, 100],
         start_angle=90,
         color_discrete_sequence=SEQUENCE_COLOR,
-        custom_data=['Territory', 'Dimension', 'Score', 'Year']
+        custom_data=['territory', 'dimension', 'score', 'year']
     )
     template = (
         "<b>%{customdata[0]}</b><br><br>"
         "%{customdata[1]}: %{customdata[2]:#.3g}/100<br><br>"
-        "Year: %{customdata[3]}"
+        "Anno: %{customdata[3]}"
         "<extra></extra>"
     )
     fig.update_traces(hovertemplate=template)
@@ -510,6 +522,7 @@ def display_radar(territories, year):
     fig.update_polars(angularaxis=dict(tickvals=list(range(len(features))), ticktext=tick_labels, tickfont_size=10))
     fig.update_layout(
         legend=dict(
+            title='Territorio, Dimensione',
             orientation='h',
             yanchor="bottom",
             y=-0.3,

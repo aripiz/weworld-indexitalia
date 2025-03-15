@@ -150,7 +150,7 @@ def update_scorecard_summary(territory):
     values = [
         get_value(df_territory, 'area', "{}"),
         get_value(df_territory, 'Popolazione (totale)', "{:.3f} milioni", divide=1e6),
-        get_value(df_territory, 'PIL pro capite', "€{:.0f}",),
+        get_value(df_territory, 'PIL per abitante', "€{:.0f}",),
         get_value(df_territory, INDEX_KEY, "{}/100"),
         get_value(df_territory, 'rank', "{:.0f}/21"),
         get_value(df_territory, 'tier', "{}"),

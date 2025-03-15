@@ -16,38 +16,38 @@ indicators_list = [
 ]
 
 intro_text = f"""
-ChildFund Alliance World Index (CFA World Index) ranks 157 countries from 2015 to 2023 combining 30 different indicators. The Index - together with the 3 Sub-indexes _Context_, _Children_ and _Women_ - aims at inquiring the implementation of human rights for children and women at the country, regional area and world level.
+WeWorld Index Italia classifica le regioni italiane dal 2018 al 2023 combinando 30 indicatori diversi. L'Indice - insieme ai 3 Sottoindici _Contesto_, _Minori_ e _Donne_ - con l'obiettivo di misurare l'implementazione dei diritti umani per bambini, bambine, adolescenti e donne a livello regionale, d'area e italiano nel complesso.
 
-For a detailed description of the method adopted refer to the [Technical Notes]({NOTES_FILE}).
+Per una descrizione completa della costruzione, si veda il report [Medodologia e note tecniche]({NOTES_FILE}).
 """
 
 structure_text = """
-The need to evaluate the performance of territories separately in relation to the three sub-indices arises from a specific assumption: intervening to ensure inclusion in general, without considering the specific gender and generational needs and risks, adopting an intersectional approach, does not allow for the full realization of the rights and empowerment of women, children, and adolescents.
+La necessità di valutare separatamente le performance dei territori in relazione ai tre sottoindici nasce da una specifica assunzione: intervenire per garantire l'inclusione in generale, senza considerare le specifiche necessità e i rischi legati al genere e alla generazione, adottando un approccio intersezionale, non permette di realizzare pienamente i diritti e l'empowerment di donne, bambini e adolescenti.
 
-Real inclusion for these categories, in fact, can only be achieved through the creation, implementation, and monitoring of appropriate policies that must be multidimensional to account for the intersection between the rights of women and minors, and targeted to address their specific needs. Therefore, it is necessary to look even more closely at their conditions.
+Una reale inclusione di queste categorie, infatti, può compiersi solo attraverso la creazione, implementazione e il monitoraggio di policy adeguate che devono essere al tempo stesso multidimensionali, per tenere conto dell’intreccio esistente tra i diritti di donne e minori, e targettizzate, ovvero tarate sulle loro necessità specifiche. Per questo è necessario guardare ancora più da vicino alle loro condizioni.
 
-It is therefore necessary to proceed on two parallel and complementary fronts: on the one hand, it is essential to work on the contexts in which women, children, and adolescents live to make them as favorable as possible for their full development; on the other hand, it cannot be assumed that favorable contexts alone are sufficient to meet the needs and demands of women, children, and adolescents, for which adequate policies and targeted interventions are necessary.
+È necessario quindi procedere su due fronti paralleli e complementari: da una parte è fondamentale lavorare sui contesti in cui donne, bambini e adolescenti vivono e renderli il più favorevoli possibile al loro pieno sviluppo; dall’altra non si può di certo pensare che contesti favorevoli siano di per sé sufficienti a soddisfare i bisogni e le istanze di donne, bambini e adolescenti per i quali sono necessarie politiche adeguate e interventi mirati.
 """
 
 aggregation_text = """
-CFA World Index for each territory consists of a **0-100 score** developed by aggregating the normalized data of its 30 Indicators in **three different steps**.
+Il WeWorld Index Italia per ogni territorio consiste in un punteggio **0-100** elaborato aggregando i dati normalizzati dei suoi 30 Indicatori in **tre diverse fasi**.
 
-First, the scores of each **Dimension** are calculated by taking the arithmetic mean of the scores of the two constituent **Components** (normalized indicators). Next, to avoid full compensability between Dimensions, the score of the **Sub-indexes** is determined by the geometric mean of the Dimensions that are part of it. Finally, the geometric mean is also used to calculate the overall **Index** from the 3 Sub-indexes.
+Innanzitutto sono calcolati i punteggi di ciascuna delle **Dimensioni** prendendo la media aritmetica dei punteggi delle due **Componenti** costituenti (indicatori normalizzati). Successivamente, per evitare una piena compensabilità fra le Dimensioni, il punteggio dei **Sottoindici** è determinato dalla media geometrica delle Dimensioni che ne fanno parte. La media geometrica è infine utilizzata anche per calcolare il **WeWorld Index Italia** a partire dai 3 Sottoindici.
 
-This kind of aggregation is **non-compensatory**: a poor performance in one aspect judged to be crucial for inclusion cannot be fully or partly compensated for by a high score in others.
+Questo tipo di aggregazione è **non compensativo**: una scarsa performance in un aspetto giudicato cruciale per la realizzazione dei diritti umani non può essere completamente o parzialmente compensato da un punteggio elevato in altri.
 """
 
 indicator_table = dbc.Table(
     children=[
         html.Tbody([
-            html.Tr([html.Th("Indicator", style={'font-weight': 'bold', 'text-transform': 'uppercase'}), html.Td(id="indicator_num")]),
-            html.Tr([html.Th("Name", style={'font-weight': 'bold', 'text-transform': 'uppercase'}), html.Td(id="indicator_name")]),
-            html.Tr([html.Th("Sub-index", style={'font-weight': 'bold', 'text-transform': 'uppercase'}), html.Td(id="indicator_sub")]),
-            html.Tr([html.Th("Dimension", style={'font-weight': 'bold', 'text-transform': 'uppercase'}), html.Td(id="indicator_dim")]),
-            html.Tr([html.Th("Definition", style={'font-weight': 'bold', 'text-transform': 'uppercase'}), html.Td(id="indicator_des")]),
-            html.Tr([html.Th("Unit", style={'font-weight': 'bold', 'text-transform': 'uppercase'}), html.Td(id="indicator_unit")]),
-            html.Tr([html.Th("Last update", style={'font-weight': 'bold', 'text-transform': 'uppercase'}), html.Td(id="indicator_update")]),
-            html.Tr([html.Th("Source", style={'font-weight': 'bold', 'text-transform': 'uppercase'}), html.Td(html.A(id="indicator_source", target="_blank", rel="noopener noreferrer"))])
+            html.Tr([html.Th("Numero", style={'font-weight': 'bold', 'text-transform': 'uppercase'}), html.Td(id="indicator_num")]),
+            html.Tr([html.Th("Nome", style={'font-weight': 'bold', 'text-transform': 'uppercase'}), html.Td(id="indicator_name")]),
+            html.Tr([html.Th("Sottoindice", style={'font-weight': 'bold', 'text-transform': 'uppercase'}), html.Td(id="indicator_sub")]),
+            html.Tr([html.Th("Dimensione", style={'font-weight': 'bold', 'text-transform': 'uppercase'}), html.Td(id="indicator_dim")]),
+            html.Tr([html.Th("Definizione", style={'font-weight': 'bold', 'text-transform': 'uppercase'}), html.Td(id="indicator_des")]),
+            html.Tr([html.Th("Unità", style={'font-weight': 'bold', 'text-transform': 'uppercase'}), html.Td(id="indicator_unit")]),
+            html.Tr([html.Th("Aggiornamento", style={'font-weight': 'bold', 'text-transform': 'uppercase'}), html.Td(id="indicator_update")]),
+            html.Tr([html.Th("Fonte", style={'font-weight': 'bold', 'text-transform': 'uppercase'}), html.Td(html.A(id="indicator_source", target="_blank", rel="noopener noreferrer"))])
         ])
     ],
     bordered=True,
@@ -64,7 +64,7 @@ tab_indicators = html.Div(
             children=[
                 dbc.Col(
                     children=[
-                        dbc.Label("Indicator"),
+                        dbc.Label("Indicatore"),
                         dcc.Dropdown(
                             id='indicator',
                             options=indicators_list,
@@ -102,7 +102,7 @@ tab_construction = html.Div(
             children=[
                 dbc.Col(
                     children=[
-                        dcc.Markdown("### Index structure"),
+                        dcc.Markdown("### Struttura dell'Indice"),
                         dcc.Markdown(structure_text)
                     ],
                     lg=6, 
@@ -125,7 +125,7 @@ tab_construction = html.Div(
                                         ),
                                         dbc.CardBody(
                                             children=[
-                                                html.H4("Context", className="card-title"),
+                                                html.H4("Contesto", className="card-title"),
                                                 html.Div(
                                                     children=[html.P(dim) for dim in metadata.loc[[1, 3, 5, 7, 9], 'dimension']],
                                                     className="card-text"
@@ -147,7 +147,7 @@ tab_construction = html.Div(
                                         ),
                                         dbc.CardBody(
                                             children=[
-                                                html.H4("Children", className="card-title"),
+                                                html.H4("Minori", className="card-title"),
                                                 html.Div(
                                                     children=[html.P(dim) for dim in metadata.loc[[11, 13, 15, 17, 19], 'dimension']],
                                                     className="card-text"
@@ -169,7 +169,7 @@ tab_construction = html.Div(
                                         ),
                                         dbc.CardBody(
                                             children=[
-                                                html.H4("Women", className="card-title"),
+                                                html.H4("Donne", className="card-title"),
                                                 html.Div(
                                                     children=[html.P(dim) for dim in metadata.loc[[21, 23, 25, 27, 29], 'dimension']],
                                                     className="card-text"
@@ -193,7 +193,7 @@ tab_construction = html.Div(
             children=[
                 dbc.Col(
                     children=[
-                        dcc.Markdown("### Aggregation process"),
+                        dcc.Markdown("### Processo di aggregazione"),
                         dcc.Markdown(aggregation_text)
                     ],
                     lg=6,
@@ -207,9 +207,9 @@ tab_construction = html.Div(
                                     children=[
                                         dbc.CardBody(
                                             children=[
-                                                html.H4("Dimensions", className="card-title"),
+                                                html.H4("Dimensioni", className="card-title"),
                                                 dcc.Markdown(
-                                                    "The **arithmetic mean** of the **2 Components** (indicators) of each dimension gives its score.",
+                                                    "La **media aritmetica** delle **2 Componenti** (indicatori) di ciascuna Dimensione ne dà il punteggio.",
                                                     className="card-text"
                                                 )
                                             ]
@@ -220,9 +220,9 @@ tab_construction = html.Div(
                                     children=[
                                         dbc.CardBody(
                                             children=[
-                                                html.H4("Sub-indexes", className="card-title"),
+                                                html.H4("Sottoindici", className="card-title"),
                                                 dcc.Markdown(
-                                                    "The **geometric mean** of the **5 Dimensions** of each Sub-index gives its score.",
+                                                    "La **media geometrica** delle **5 Dimensioni** di ciascun Sottoindice ne dà il punteggio.",
                                                     className="card-text"
                                                 )
                                             ]
@@ -233,9 +233,9 @@ tab_construction = html.Div(
                                     children=[
                                         dbc.CardBody(
                                             children=[
-                                                html.H4("Index", className="card-title"),
+                                                html.H4("Indidce", className="card-title"),
                                                 dcc.Markdown(
-                                                    "The **geometric mean** of **3 Sub-indexes** gives the Index score.",
+                                                    "La **media geometrica** dei **3 Sottoindici** dà il punteggio dell'Indice.",
                                                     className="card-text"
                                                 )
                                             ]

@@ -12,7 +12,7 @@ TEMPLATE_CSS = f"https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/{TEMPLATE}/b
 FIGURE_TEMPLATE = TEMPLATE.lower()
 DBC_CSS = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css"
 
-BRAND_COLOR = '#DD9033'#005D9E'
+BRAND_COLOR = '#E98D00'  #'005D9E' blu
 TIER_COLORS = [
     "#D53A50",  # Red
     "#E97B4E",  # Orange

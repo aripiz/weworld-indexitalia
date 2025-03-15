@@ -29,7 +29,7 @@ tab_map_features = html.Div([
                 n_clicks=0,
             ),
             dbc.Collapse(
-                dbc.Card("The map displays the scores of the Index components. You can choose the component (Index/Sub-index/Dimension) and the year to view from the menus. Each area is shaded according to its level of Human Rights Implementation for the selected component. The score ranges for each level are detailed in the Technical Notes.", body=True),
+                dbc.Card("La mappa mostra i punteggi delle componenti dell’Indice. È possibile scegliere la componente (Indice/Sottoindice/Dimensione) e l’anno da visualizzare dai menu. Ogni area è colorata in base al livello di implementazione dei diritti Umani per la componente selezionata. Gli intervalli di punteggio per ciascun livello sono dettagliati nella Metodologia.", body=True),
                 id="collapse",
                 is_open=True,
             ),
@@ -37,7 +37,7 @@ tab_map_features = html.Div([
     ),
     dbc.Row([
         dbc.Col([
-            dbc.Label("Component"), 
+            dbc.Label("Componente"), 
             dcc.Dropdown(
                 id='feature',
                 options=subindexes_list + dimensions_list,
@@ -45,7 +45,7 @@ tab_map_features = html.Div([
                 style={"width": "75%"}
             )], lg=8, xs=12),
         dbc.Col([
-            dbc.Label("Year"),
+            dbc.Label("Anno"),
             dcc.Slider(
                 years_list[0],
                 years_list[-1],
@@ -78,7 +78,7 @@ tab_map_indicators = html.Div([
                 n_clicks=0,
             ),
             dbc.Collapse(
-                dbc.Card("The map displays data for the Indicators that are part of the Index. You can use the menus to choose the Indicator, the type of value (original data or normalized score), and the reference year. If you select original data, the map will show blank areas for any missing values.", body=True),
+                dbc.Card("La mappa visualizza i dati per gli Indicatori parte dell’Indice. È possibile utilizzare i menu per scegliere l’Indicatore, il tipo di valore (dati originali o punteggio normalizzato) e l’anno di riferimento. Se si selezionano i dati originali, la mappa mostrerà aree vuote per in caso di eventiali valori mancanti.", body=True),
                 id="collapse",
                 is_open=True,
             ),
@@ -86,7 +86,7 @@ tab_map_indicators = html.Div([
     ),
     dbc.Row([
         dbc.Col([
-            dbc.Label("Indicator"),
+            dbc.Label("Indicatore"),
             dcc.Dropdown(
                 id='indicator',
                 options=components_list,
@@ -95,7 +95,7 @@ tab_map_indicators = html.Div([
             )], lg=6, xs=12
         ),
         dbc.Col([
-            dbc.Label("Kind"),
+            dbc.Label("Tipo"),
             dbc.RadioItems(
                 id='indicator_kind',
                 options=kind_list,
@@ -104,7 +104,7 @@ tab_map_indicators = html.Div([
             )], lg=2, xs=12
         ),
         dbc.Col([
-            dbc.Label("Year"),
+            dbc.Label("Anno"),
             dcc.Slider(
                 years_list[0],
                 years_list[-1],
@@ -137,7 +137,7 @@ tab_correlations = html.Div([
                 n_clicks=0,
             ),
             dbc.Collapse(
-                dbc.Card("The chart shows the correlation between Index components: each point represents a territory, with x and y coordinates based on its scores in the selected components. You can use the menus to choose which two components (Index/Sub-index/Dimension/Indicator) to compare. Spearmans's correlation coefficient \u03c1\u209b is displayed above the plot. Territories are colored according to their geographic area and sized based on their population (Total/Female/Children). Clicking on the items in the legend you can show/hide them.", body=True),
+                dbc.Card("Il grafico mostra la correlazione tra le componenti dell’Indice: ogni cerchio rappresenta un territorio, con le coordinate x e y basate sui punteggi nei componenti selezionati. È possibile utilizzare i menu per scegliere quali due componenti (Indice/Sottoindice/Dimensione/Indicatore) confrontare. Il coefficiente di correlazione di Spearman \u03c1\u209b è visualizzato sopra il grafico. I territori sono colorati in base all'area geografica di appartenenza e dimensionati in base alla loro popolazione (Totale/Minori/Donne). Cliccando sugli elementi nella legenda, è possibile mostrarli/nasconderli.", body=True),
                 id="collapse",
                 is_open=True,
             ),
@@ -145,7 +145,7 @@ tab_correlations = html.Div([
     ),
     dbc.Row([
         dbc.Col([
-            dbc.Label("Data (x)"),
+            dbc.Label("Dati (x)"),
             dcc.Dropdown(
                 id="corr_x",
                 options=subindexes_list + dimensions_list,
@@ -154,7 +154,7 @@ tab_correlations = html.Div([
                 #style={"width": "75%"}
             )], lg=3, xs=12),
         dbc.Col([
-            dbc.Label("Data (y)"),
+            dbc.Label("Dati (y)"),
             dcc.Dropdown(
                 id="corr_y",
                 options=subindexes_list + dimensions_list,
@@ -163,7 +163,7 @@ tab_correlations = html.Div([
                 #style={"width": "75%"}
             )], lg=3, xs=12),
         dbc.Col([
-            dbc.Label("Population"),
+            dbc.Label("Popolazione"),
             dcc.Dropdown(
                 id="corr_pop",
                 options=population_list,
@@ -172,7 +172,7 @@ tab_correlations = html.Div([
                 #style={"width": "75%"}
             )], lg=3, xs=12),
         dbc.Col([
-            dbc.Label("Year"),
+            dbc.Label("Anno"),
             dcc.Slider(
                 years_list[0],
                 years_list[-1],
@@ -206,7 +206,7 @@ tab_ranking = html.Div([
                 n_clicks=0,
             ),
             dbc.Collapse(
-                dbc.Card("The table shows the ranking of territories for the selected component (Index/Sub-index/Dimension) and year. The table updates change in score and rank from 2015. When comparing rank values keep in mind that the number of territories varies in each year (between 157 and 166).", body=True),
+                dbc.Card("La tabella mostra la classifica dei territori per la componente (Indice/Sottoindice/Dimensione) e l’anno selezionati. È riportata la variazione del punteggio dal 2018.", body=True),
                 id="collapse",
                 is_open=True,
             ),
@@ -214,7 +214,7 @@ tab_ranking = html.Div([
     ),
     dbc.Row([
         dbc.Col([
-            dbc.Label("Component"),
+            dbc.Label("Componente"),
             dcc.Dropdown(
                 id="ranking_feature",
                 options=subindexes_list + dimensions_list,
@@ -222,7 +222,7 @@ tab_ranking = html.Div([
                 style={"width": "75%"}
             )], lg=8, xs=12),
         dbc.Col([
-            dbc.Label("Year"),
+            dbc.Label("Anno"),
             dcc.Slider(
                 years_list[0],
                 years_list[-1],
@@ -255,7 +255,7 @@ tab_evolution = html.Div([
                 n_clicks=0,
             ),
             dbc.Collapse(
-                dbc.Card("The chart displays the temporal evolution of the Index components. From the menus, you can select one or more components (Index/Sub-index/Dimension/Indicator) and one or more territories (Country/Area/World) to compare their evolution.", body=True),
+                dbc.Card("Il grafico mostra la serie temporale delle componenti dell’Indice. Dai menu, puoi selezionare una o più componenti (Indice/Sottoindice/Dimensione/Indicatore) e uno o più territori (Regione/Area/Italia) per confrontare la loro evoluzione.", body=True),
                 id="collapse",
                 is_open=True,
             ),
@@ -263,7 +263,7 @@ tab_evolution = html.Div([
     ),
     dbc.Row([
         dbc.Col([
-            dbc.Label("Component"),
+            dbc.Label("Componente"),
             dcc.Dropdown(
                 id="evolution_feature",
                 options=subindexes_list +  dimensions_list + components_list,
@@ -273,7 +273,7 @@ tab_evolution = html.Div([
                 multi=True
             )], lg=6, xs=12),
         dbc.Col([
-            dbc.Label("Territory"),
+            dbc.Label("Territorio"),
             dcc.Dropdown(
                 id='evolution_territory',
                 options=territories_list,
@@ -304,7 +304,7 @@ tab_radar = html.Div([
                 n_clicks=0,
             ),
             dbc.Collapse(
-                dbc.Card("The radar chart shows the scores of the Dimensions for the territory. You can use the menus to select the territories (Country/Area/World) and the years to display. The table beside the chart shows the data presented in the chart.", body=True),
+                dbc.Card("Il grafico radar mostra i punteggi delle Dimensioni per il territorio scelto. Puoi utilizzare i menu per selezionare i territori (Regioni/Area/Italia) e gli anni da visualizzare.", body=True),
                 id="collapse",
                 is_open=True,
             ),
@@ -312,7 +312,7 @@ tab_radar = html.Div([
     ),
     dbc.Row([
         dbc.Col([
-            dbc.Label("Territory"),
+            dbc.Label("Territorio"),
             dcc.Dropdown(
                 id='radar_territory',
                 options=territories_list,
@@ -321,7 +321,7 @@ tab_radar = html.Div([
                 multi=True
             )], lg=9, xs=12),
         dbc.Col([
-            dbc.Label("Year"),
+            dbc.Label("Anno"),
             dcc.Dropdown(
                 id='radar_year',
                 options=years_list,
@@ -355,7 +355,7 @@ tab_comparison = html.Div([
                 n_clicks=0,
             ),
             dbc.Collapse(
-                dbc.Card("The chart compares the Index and other relevant indicators: GDP per capita and Human Development Index. Each point represents a territory, with x and y coordinates based on its value in the selected datasets. You can use the menus to choose which datasets to compare. Territories are colored according to their geographic area and sized based on their population (Total/Female/Children). Clicking on the items in the legend you can show/hide them. GDP per capita uses a logarithmic scale.", body=True),
+                dbc.Card("Il grafico confronta WeWorld Index Italia e altri indici rilevanti. Ogni cerchio rappresenta un territorio, con le coordinate x e y basate sui punteggi nei componenti selezionati. È possibile utilizzare i menu per scegliere quali due componenti (Indice/Sottoindice/Dimensione/Indicatore) confrontare. Il coefficiente di correlazione di Spearman \u03c1\u209b è visualizzato sopra il grafico. I territori sono colorati in base all'area geografica di appartenenza e dimensionati in base alla loro popolazione (Totale/Minori/Donne). Cliccando sugli elementi nella legenda, è possibile mostrarli/nasconderli. Il PIL pro capite è rappresentato su una scala logaritmica.", body=True),
                 id="collapse",
                 is_open=True,
             ),
@@ -363,7 +363,7 @@ tab_comparison = html.Div([
     ),
     dbc.Row([
         dbc.Col([
-            dbc.Label("Data (x)"),
+            dbc.Label("Dati (x)"),
             dcc.Dropdown(
                 id="comp_x",
                 options=[subindexes_list[0]] + auxiliary_list,
@@ -372,7 +372,7 @@ tab_comparison = html.Div([
                 #style={"width": "75%"}
             )], lg=3, xs=12),
         dbc.Col([
-            dbc.Label("Data (y)"),
+            dbc.Label("Dati (y)"),
             dcc.Dropdown(
                 id="comp_y",
                 options=[subindexes_list[0]] + auxiliary_list,
@@ -381,7 +381,7 @@ tab_comparison = html.Div([
                 #style={"width": "75%"}
             )], lg=3, xs=12),
         dbc.Col([
-            dbc.Label("Population"),
+            dbc.Label("Popolazione"),
             dcc.Dropdown(
                 id="comp_pop",
                 options=population_list,
@@ -390,7 +390,7 @@ tab_comparison = html.Div([
                 #style={"width": "75%"}
             )], lg=3, xs=12),
         dbc.Col([
-            dbc.Label("Year"),
+            dbc.Label("Anno"),
             dcc.Slider(
                 years_list[0],
                 years_list[-1],

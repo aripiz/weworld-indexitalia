@@ -30,5 +30,5 @@ number,sub-index,dimension,name,unit,inverted,best_type,worst_type,best_value,wo
 29,Donne,Partecipazione politica,Rappresentanza politica in Parlamento (donne),%,double,theoretical parity,worst,50.0,13.585,,no,Istat (Elaborazione su dati della Camera dei Deputati e del Senato della Repubblica),2022,Percentuale di donne elette al Senato della Repubblica e alla Camera dei Deputati sul totale degli eletti. Sono esclusi i senatori e i deputati eletti nelle circoscrizioni estero e i senatori a vita.,https://www.istat.it/statistiche-per-temi/focus/benessere-e-sostenibilita/la-misurazione-del-benessere-bes/il-bes-dei-territori/,2022.0
 30,Donne,Partecipazione politica,Rappresentanza politica a livello locale (donne),%,double,theoretical parity,worst,50.0,3.04,,no,Istat (Elaborazione su dati dei Consigli regionali),2023,Percentuale di donne elette nei Consigli Regionali sul totale degli eletti.,https://www.istat.it/statistiche-per-temi/focus/benessere-e-sostenibilita/la-misurazione-del-benessere-bes/il-bes-dei-territori/,2023.0
 101,,,EU Social Progress Index 2.0,,,,,,,,,European Commision,2024,,https://ec.europa.eu/regional_policy/assets/social-progress/index.html#/,
-102,,,Subnational HDI,,,,,,,,,Global Data Lab ,2022,,https://globaldatalab.org/shdi/,
-103,,,PIL pro capite,,,,,,,,,Istat,2024,,https://www.istat.it/tag/conti-territoriali/,
+102,,,Subnational HDI,,,,,,,,,Global Data Lab,2022,,https://globaldatalab.org/shdi/,
+103,,,PIL per abitante,,,,,,,,,Istat,2023,,https://www.istat.it/tag/conti-territoriali/,

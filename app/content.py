@@ -54,7 +54,7 @@ navbar = dbc.NavbarSimple(
     ],
     brand_href=BRAND_LINK,
     fixed='top',
-    color=BRAND_COLOR,  # 'primary',
+    color='primary',
     dark=True
 )
 
