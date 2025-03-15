@@ -45,8 +45,8 @@ GEO_KEY = "properties.istat_code_num"
 INDEX_KEY = "WeWorld Index Italia"
 
 # Files link
-DATA_FILE = "../data/weworld-index-2025_data.csv" 
-META_FILE = "../data/weworld-index-2025_metadata.csv" 
+DATA_FILE = "../data/weworld-indexitalia-2025_data.csv" 
+META_FILE = "../data/weworld-indexitalia-2025_metadata.csv" 
 GEO_FILE = "../data/italy_regions_low.json"
 NOTES_FILE = "" 
 REPORT_FILE =  ""

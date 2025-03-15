@@ -261,6 +261,7 @@ def display_corr(x_data, y_data, population, year):
     )
     fig.update_traces(hovertemplate=template)
     fig.update_layout(
+        #xaxis=dict(scaleanchor="y"),
         title=f"Coefficiente di correlazione : \u03c1\u209b = {formatted_corr}",
         legend=dict(
             title = 'Area',

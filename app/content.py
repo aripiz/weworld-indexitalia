@@ -36,7 +36,7 @@ navbar = dbc.NavbarSimple(
         dbc.DropdownMenu(
             children=[
                 dbc.DropdownMenuItem("Report", href=REPORT_FILE),
-                dbc.DropdownMenuItem("Note metodologiche", href=NOTES_FILE),
+                dbc.DropdownMenuItem("Metodologia e note tecniche", href=NOTES_FILE),
                 dbc.DropdownMenuItem("Dati", id='open_download', n_clicks=0),
                 modal_data_download
             ],
