@@ -178,7 +178,7 @@ tab_correlations = html.Div([
                 years_list[-1],
                 step=1,
                 id='slider_year',
-                value=years_list[-2],
+                value=years_list[-1],
                 marks={str(year): str(year) for year in [years_list[0], years_list[-1]]},
                 tooltip={"placement": "bottom", "always_visible": True}
             )
@@ -355,7 +355,7 @@ tab_comparison = html.Div([
                 n_clicks=0,
             ),
             dbc.Collapse(
-                dbc.Card("Il grafico confronta WeWorld Index Italia e altri indici rilevanti. Ogni cerchio rappresenta un territorio, con le coordinate x e y basate sui punteggi nei componenti selezionati. È possibile utilizzare i menu per scegliere quali due componenti (Indice/Sottoindice/Dimensione/Indicatore) confrontare. Il coefficiente di correlazione di Spearman \u03c1\u209b è visualizzato sopra il grafico. I territori sono colorati in base all'area geografica di appartenenza e dimensionati in base alla loro popolazione (Totale/Minori/Donne). Cliccando sugli elementi nella legenda, è possibile mostrarli/nasconderli. Il PIL pro capite è rappresentato su una scala logaritmica.", body=True),
+                dbc.Card("Il grafico confronta WeWorld Index Italia e altri indici rilevanti. Ogni cerchio rappresenta un territorio, con le coordinate x e y basate sui punteggi nei componenti selezionati. È possibile utilizzare i menu per scegliere quali due componenti (Indice/Sottoindice/Dimensione/Indicatore) confrontare. Il coefficiente di correlazione di Spearman \u03c1\u209b è visualizzato sopra il grafico. I territori sono colorati in base all'area geografica di appartenenza e dimensionati in base alla loro popolazione (Totale/Minori/Donne). Cliccando sugli elementi nella legenda, è possibile mostrarli/nasconderli. Il PIL pro capite è rappresentato su una scala logaritmica per meglio confrontarlo con l'Indice.", body=True),
                 id="collapse",
                 is_open=True,
             ),
