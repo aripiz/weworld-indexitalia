@@ -315,8 +315,8 @@ def display_comparison(x_data, y_data, population, year):
     template = (
         "<b>%{customdata[0]}</b><br>"
         "<i>%{customdata[1]}</i><br><br>"
-        f"{x_data}: %{{customdata[2]:#.3g}}/100<br>"
-        f"{y_data}: %{{customdata[3]:#.3g}}/100<br><br>"
+        f"{x_data}: %{{customdata[2]:#.3g}}<br>"
+        f"{y_data}: %{{customdata[3]:#.3g}}<br><br>"
         f"{population}: %{{customdata[4]:.3f}} milioni<br><br>"
         f"Anno: %{{customdata[5]}}"
         "<extra></extra>"
