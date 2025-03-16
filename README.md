@@ -1,10 +1,10 @@
-# ChildFund Alliance Index
+# WeWorld Index Italia
 
 ## Overview
 
-This repository hosts the dashboard for the "ChildFund Alliance Index - 2024 Edition," a comprehensive statistical index evaluating the inclusion of children and women across various countries. Developed for WeWorld Onlus, a member of the ChildFund Alliance, this tool provides valuable insights into global inclusion efforts.
+This repository hosts the dashboard for "WeWorld Index Italia" a comprehensive statistical index evaluating human rights implementation of children and women across Italian regions. Developed for WeWorld Onlus, a member of ChildFund Alliance, this tool provides valuable insights into inclusion efforts in Italy.
 
-Access the final version of the [dashboard](https://cfaworldindex.azurewebsites.net).
+Access the 2025 version of the [dashboard](https://weworldindexitalia.azurewebsites.net).
 
 ## Features
 
@@ -21,17 +21,17 @@ Access the final version of the [dashboard](https://cfaworldindex.azurewebsites.
 
 ## Purpose
 
-ChildFund Alliance Index aims to:
+WeWorld Index Italia aims to:
 
-1. Provide a quantitative measure of children and women's inclusion in different countries
+1. Provide a quantitative measure of children and women's inclusion in Italy
 2. Enable policymakers, researchers, and NGOs to make data-driven decisions
 3. Track progress in inclusion efforts over time
 4. Highlight areas needing improvement in various regions
 
 ## Methodology
 
-For detailed information on the data analysis methodology used in the ChildFund Alliance Index, please refer to the [Technical Notes](https://github.com/aripiz/cfa-index/blob/main/data/ChildFundAlliance-Index-2024_TechnicalNotes.pdf).
+For detailed information on the data analysis methodology, please refer to the [Technical Notes](https://github.com/aripiz/cfa-index/blob/main/data/ChildFundAlliance-Index-2024_TechnicalNotes.pdf).
 
 ## Contact
 
-For more information visit [WeWorld](https://weworld.it) or [ChildFund Alliance](https://childfundalliance.org/).
+For more information visit [WeWorld](https://weworld.it).
