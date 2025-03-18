@@ -80,9 +80,11 @@ footer = dbc.Navbar(
         "display": "flex",
         'justify-content': 'space-between',
         'flex': '1',
-        'height': '20px'
+        'height': '20px',
     },
     fixed='bottom',
+    color="white",
+
 )
 
 # Page
