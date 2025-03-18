@@ -6,7 +6,7 @@ from configuration import TITLE
 
 register_page(__name__, path='/', name=TITLE)
 
-from layout.layout_home import home
+from layout.layout_home_improved import home
 
 layout = dbc.Container(
     children=home,

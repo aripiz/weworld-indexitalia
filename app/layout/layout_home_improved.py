@@ -14,7 +14,6 @@ from configuration import (
     TIER_COLORS,
     TIER_BINS,
     TIER_LABELS,
-    OCEAN_COLOR,
     BRAND_LINK,
     SEQUENCE_COLOR
 )
@@ -46,15 +45,18 @@ def display_map():
         dragmode=False,
         showlegend=False,
         autosize=True,
-        margin={"r": 0, "t": 0, "l": 0, "b": 0},
+        margin={"r": 0, "t": 0, "l": 0, "b": 0, "pad": 0},  # Rimuovi tutto il padding
         geo=dict(
             projection_type='natural earth',
             showland=False,
             showocean=False,
             showlakes=False,
             showrivers=False,
-            #scope='europe',
-            visible=False 
+            visible=False,
+            center=dict(lat=41.9, lon=12.5),  # Centro Italia
+            projection=dict(
+                scale=1.3,  # Aumenta lo zoom generale
+            ),
         ),
     )
 
@@ -96,6 +98,7 @@ Members work to end violence and exploitation against children; provide expertis
 # Structure
 home = dbc.Container(
     children=[
+        # Header
         dbc.Row(
             dbc.Col(
                 children=[
@@ -106,51 +109,67 @@ home = dbc.Container(
                 xs=12,
             ),
             className='mt-2',
-            justify='around'
         ),
+        
+        # Versione mobile: mappa a piena larghezza sopra
         dbc.Row(
             [
-            dbc.Col(
-                children=[
-                    dcc.Markdown("### Esplora l'Indice", className='my-4'),
-                    dcc.Markdown(description_text, className='my-4'),
-
-                ],
-                lg=5,
-                xs=12
-            ),
-            dbc.Col(
-                children=[
-                    dcc.Loading(
-                        dcc.Graph(
-                            figure=display_map(),
-                            config={'displayModeBar': False, 'editable': False,},
-                            id='map_home',
-                            #style={'width': '100%', 'height': '80vh'},
-                            className="d-flex justify-content-center" 
+                # Colonna per la mappa (prima su mobile)
+                dbc.Col(
+                    children=[
+                        html.Div(
+                            dcc.Loading(
+                                dcc.Graph(
+                                    figure=display_map(),
+                                    config={
+                                        'displayModeBar': False,
+                                        'editable': False,
+                                        'responsive': True,
+                                        'scrollZoom': False,
+                                        'staticPlot': False,
+                                    },
+                                    id='map_home',
+                                    style={
+                                        'width': '100%',
+                                        'height': '70vh',
+                                        'min-height': '400px',
+                                        'max-width': '100vw',
+                                        'margin': '0',
+                                        'padding': '0',
+                                    },
+                                    className="map-container w-100",
+                                ),
+                                color=SEQUENCE_COLOR[0],
+                                type="circle",
+                            ),
+                            className="w-100 p-0"
                         ),
-                        color=SEQUENCE_COLOR[0]
-                    ),
-                    dcc.Markdown("_Clicca su una regione per accedere alla sua scheda di valutazione._", style={"text-align": "center"})
-
-                ],
-                lg=7,
-                xs=12
-            ),],
-            className='mt-4',
-            justify='around'
+                        dcc.Markdown(
+                            "_Clicca su una regione per accedere alla sua scheda di valutazione._",
+                            style={"text-align": "center"},
+                            className="mt-2 mb-4"
+                        ),
+                    ],
+                    lg=7,
+                    xs=12,
+                    className="order-1 order-lg-2 p-0 p-lg-3",  # Nessun padding su mobile
+                ),
+                
+                # Colonna per il testo (seconda su mobile)
+                dbc.Col(
+                    children=[
+                        dcc.Markdown("### Esplora l'Indice", className='mt-2 mb-3'),
+                        dcc.Markdown(description_text, className='mb-4'),
+                    ],
+                    lg=5,
+                    xs=12,
+                    className="order-2 order-lg-1 px-3",  # Padding solo orizzontale
+                ),
+            ],
+            className='mt-3 mx-0',  # Nessun margine orizzontale
+            justify='around',
         ),
-        # dbc.Row(
-        #     dbc.Col(
-        #         children=[
-        #             html.H4("About ChildFund Alliance"),
-        #             dcc.Markdown(about_text)
-        #         ],
-        #         lg=12,
-        #         xs=12
-        #     ),
-        #     className='mt-4',
-        #     justify='around'
-        # ),
     ],
+    fluid=True,
+    className="p-0 overflow-hidden",  # Rimuove padding e previene scroll
 )
