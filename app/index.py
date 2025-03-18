@@ -1,5 +1,6 @@
 # index.py
 
+from operator import index
 from dash import Dash
 import dash_bootstrap_components as dbc
 import pandas as pd
@@ -9,6 +10,7 @@ from configuration import (
     DATA_FILE,
     META_FILE,
     GEO_FILE,
+    SUMMARY_FILE,
     TITLE,
     DBC_CSS,
     TEMPLATE_CSS
@@ -18,6 +20,7 @@ from configuration import (
 data = pd.read_csv(DATA_FILE)
 metadata = pd.read_csv(META_FILE, index_col=0)
 geodata = gpd.read_file(GEO_FILE)
+summary = pd.read_csv(SUMMARY_FILE, index_col=0)
 
 # App
 app = Dash(

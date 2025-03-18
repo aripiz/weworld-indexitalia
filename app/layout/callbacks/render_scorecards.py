@@ -9,7 +9,7 @@ import dash_bootstrap_components as dbc
 from dash_bootstrap_templates import load_figure_template
 from dash import Input, Output, html
 
-from index import app, data, geodata, metadata
+from index import app, data, geodata, metadata, summary
 from configuration import (
     SEQUENCE_COLOR, 
     TIER_LABELS, 
@@ -358,3 +358,12 @@ def display_table(territory):
     )
 
     return table
+
+
+# Callback to update the scorecard summary based on the selected territory
+@app.callback(
+    Output("scorecard_summary", "children"),
+    Input('scorecard_territory', 'value')
+)
+def update_scorecard_summary(territory):
+    return summary.loc[territory].values[0]

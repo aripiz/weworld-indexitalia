@@ -29,7 +29,7 @@ tab_map_features = html.Div([
                 n_clicks=0,
             ),
             dbc.Collapse(
-                dbc.Card("La mappa mostra i punteggi delle componenti dell’Indice. È possibile scegliere la componente (Indice/Sottoindice/Dimensione) e l’anno da visualizzare dai menu. Ogni area è colorata in base al livello di implementazione dei diritti Umani per la componente selezionata. Gli intervalli di punteggio per ciascun livello sono dettagliati nella Metodologia.", body=True),
+                dbc.Card("La mappa mostra i punteggi delle componenti dell’Indice. È possibile scegliere la componente (Indice/Sottoindice/Dimensione) e l’anno da visualizzare dai menu. Ogni area è colorata in base al livello di implementazione dei diritti umani per la componente selezionata. Gli intervalli di punteggio per ciascun livello sono dettagliati nella Metodologia.", body=True),
                 id="collapse",
                 is_open=True,
             ),
@@ -78,7 +78,7 @@ tab_map_indicators = html.Div([
                 n_clicks=0,
             ),
             dbc.Collapse(
-                dbc.Card("La mappa visualizza i dati per gli Indicatori parte dell’Indice. È possibile utilizzare i menu per scegliere l’Indicatore, il tipo di valore (dati originali o punteggio normalizzato) e l’anno di riferimento. Se si selezionano i dati originali, la mappa mostrerà aree vuote per in caso di eventiali valori mancanti.", body=True),
+                dbc.Card("La mappa mostra i dati per gli Indicatori che fanno parte dell’Indice. È possibile utilizzare il menu per scegliere l’Indicatore da visualizzare, il tipo di valore (dati originali o punteggio normalizzato) e l’anno di riferimento. Se si selezionano i dati originali, le aree senza dati disponibili appariranno vuote sulla mappa.", body=True),
                 id="collapse",
                 is_open=True,
             ),
@@ -137,7 +137,7 @@ tab_correlations = html.Div([
                 n_clicks=0,
             ),
             dbc.Collapse(
-                dbc.Card("Il grafico mostra la correlazione tra le componenti dell’Indice: ogni cerchio rappresenta un territorio, con le coordinate x e y basate sui punteggi nei componenti selezionati. È possibile utilizzare i menu per scegliere quali due componenti (Indice/Sottoindice/Dimensione/Indicatore) confrontare. Il coefficiente di correlazione di Spearman \u03c1\u209b è visualizzato sopra il grafico. I territori sono colorati in base all'area geografica di appartenenza e dimensionati in base alla loro popolazione (Totale/Minori/Donne). Cliccando sugli elementi nella legenda, è possibile mostrarli/nasconderli.", body=True),
+                dbc.Card("Il grafico mostra la correlazione tra le componenti dell’Indice: ogni cerchio rappresenta un territorio, con le coordinate x e y basate sui punteggi nelle componenti selezionate. È possibile utilizzare i menu per scegliere quali delle due componenti (Indice/Sottoindice/Dimensione/Indicatore) confrontare. Il coefficiente di correlazione di Spearman \u03c1\u209b è visualizzato sopra il grafico. I territori sono colorati in base all'area geografica di appartenenza e dimensionati in base alla loro popolazione (Totale/Minori/Donne). Cliccando sugli elementi nella legenda, è possibile mostrarli o nasconderli.", body=True),
                 id="collapse",
                 is_open=True,
             ),
@@ -255,7 +255,7 @@ tab_evolution = html.Div([
                 n_clicks=0,
             ),
             dbc.Collapse(
-                dbc.Card("Il grafico mostra la serie temporale delle componenti dell’Indice. Dai menu, puoi selezionare una o più componenti (Indice/Sottoindice/Dimensione/Indicatore) e uno o più territori (Regione/Area/Italia) per confrontare la loro evoluzione.", body=True),
+                dbc.Card("Il grafico mostra la serie temporale delle componenti dell’Indice. Dai menu, puoi selezionare una o più componenti (Indice/Sottoindice/Dimensione/Indicatore) e uno o più territori (Regione/Area/Italia) per confrontare la loro performance dal 2018.", body=True),
                 id="collapse",
                 is_open=True,
             ),
@@ -355,7 +355,7 @@ tab_comparison = html.Div([
                 n_clicks=0,
             ),
             dbc.Collapse(
-                dbc.Card("Il grafico confronta WeWorld Index Italia e altri indici rilevanti. Ogni cerchio rappresenta un territorio, con le coordinate x e y basate sui punteggi nei componenti selezionati. È possibile utilizzare i menu per scegliere quali due componenti (Indice/Sottoindice/Dimensione/Indicatore) confrontare. Il coefficiente di correlazione di Spearman \u03c1\u209b è visualizzato sopra il grafico. I territori sono colorati in base all'area geografica di appartenenza e dimensionati in base alla loro popolazione (Totale/Minori/Donne). Cliccando sugli elementi nella legenda, è possibile mostrarli/nasconderli. Il PIL pro capite è rappresentato su una scala logaritmica per meglio confrontarlo con l'Indice.", body=True),
+                dbc.Card("Il grafico confronta il WeWorld Index Italia con altri indici rilevanti. Ogni cerchio rappresenta un territorio, con le coordinate x e y basate sui punteggi degli indici selezionati. È possibile utilizzare i menu per scegliere quali dati confrontare. Il coefficiente di correlazione di Spearman \u03c1\u209b è visualizzato sopra il grafico. I territori sono colorati in base all'area geografica di appartenenza e dimensionati in base alla loro popolazione (Totale/Minori/Donne). Cliccando sugli elementi nella legenda, è possibile mostrarli/nasconderli. Il PIL pro capite è rappresentato su una scala logaritmica per meglio confrontarlo le altre tipologie di dato.", body=True),
                 id="collapse",
                 is_open=True,
             ),

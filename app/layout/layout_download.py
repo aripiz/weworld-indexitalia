@@ -14,7 +14,7 @@ modal_data_download = dbc.Modal(
         dbc.ModalHeader(dbc.ModalTitle("Download dei dati dell'Indice"), close_button=False),
         dbc.ModalBody(
             html.Div([
-                dbc.Label('Scarica tutti i dati disponibili o scegli dai menù i dati da scaricare.'),
+                dbc.Label('Scarica tutti i dati disponibili o scegli dai menu i dati da scaricare.'),
                 dbc.Row(
                     dbc.Col([
                         dbc.Label("Componenti:"),
@@ -45,7 +45,7 @@ modal_data_download = dbc.Modal(
         ),
         dbc.ModalFooter(
             dbc.Button(
-                "Close", id="close_download", n_clicks=0, className="ml-auto"
+                "Chiudi", id="close_download", n_clicks=0, className="ml-auto"
             )
         ),
     ],

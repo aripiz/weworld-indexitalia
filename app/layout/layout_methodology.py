@@ -16,21 +16,21 @@ indicators_list = [
 ]
 
 intro_text = f"""
-WeWorld Index Italia classifica le regioni italiane dal 2018 al 2023 combinando 30 indicatori diversi. L'Indice - insieme ai 3 Sottoindici _Contesto_, _Minori_ e _Donne_ - con l'obiettivo di misurare l'implementazione dei diritti umani per bambini, bambine, adolescenti e donne a livello regionale, d'area e italiano nel complesso.
+Il WeWorld Index Italia classifica le regioni italiane dal 2018 al 2023 combinando 30 indicatori diversi. L'Indice - insieme ai 3 Sottoindici _Contesto_, _Minori_ e _Donne_ - con l'obiettivo di misurare l'implementazione dei diritti umani di donne, bambini, bambine, adolescenti a livello regionale, d'area e italiano nel complesso.
 
 Per una descrizione completa della costruzione, si veda il report [Medodologia e note tecniche]({NOTES_FILE}).
 """
 
 structure_text = """
-La necessità di valutare separatamente le performance dei territori in relazione ai tre sottoindici nasce da una specifica assunzione: intervenire per garantire l'inclusione in generale, senza considerare le specifiche necessità e i rischi legati al genere e alla generazione, adottando un approccio intersezionale, non permette di realizzare pienamente i diritti e l'empowerment di donne, bambini e adolescenti.
+La necessità di valutare separatamente le performance delle regioni rispetto ai tre Sottoindici deriva da un presupposto fondamentale: per garantire il rispetto, la garanzia e l’implementazione dei diritti umani di donne e minori, è essenziale considerare le problematiche e i bisogni specifici legati al genere e all’età. Senza adottare un approccio intersezionale, non si può raggiungere la piena realizzazione dei diritti di donne, bambini, bambine e adolescenti.  
 
 Una reale inclusione di queste categorie, infatti, può compiersi solo attraverso la creazione, implementazione e il monitoraggio di policy adeguate che devono essere al tempo stesso multidimensionali, per tenere conto dell’intreccio esistente tra i diritti di donne e minori, e targettizzate, ovvero tarate sulle loro necessità specifiche. Per questo è necessario guardare ancora più da vicino alle loro condizioni.
 
-È necessario quindi procedere su due fronti paralleli e complementari: da una parte è fondamentale lavorare sui contesti in cui donne, bambini e adolescenti vivono e renderli il più favorevoli possibile al loro pieno sviluppo; dall’altra non si può di certo pensare che contesti favorevoli siano di per sé sufficienti a soddisfare i bisogni e le istanze di donne, bambini e adolescenti per i quali sono necessarie politiche adeguate e interventi mirati.
+È necessario, quindi, procedere su due fronti paralleli e complementari: da una parte, è fondamentale lavorare sui contesti in cui vivono donne e minori e renderli il più favorevoli possibile al loro pieno sviluppo; dall’altra, non basta un ambiente favorevole: è fondamentale adottare politiche mirate e interventi concreti che garantiscano la piena implementazione dei loro diritti.  
 """
 
 aggregation_text = """
-Il WeWorld Index Italia per ogni territorio consiste in un punteggio **0-100** elaborato aggregando i dati normalizzati dei suoi 30 Indicatori in **tre diverse fasi**.
+Il punteggio del WeWorld Index per ogni territorio è costituito da un valore compreso tra **0 e 100**, ottenuto aggregando i dati normalizzati dei suoi **30 Indicatori** in **tre fasi differenti**.  
 
 Innanzitutto sono calcolati i punteggi di ciascuna delle **Dimensioni** prendendo la media aritmetica dei punteggi delle due **Componenti** costituenti (indicatori normalizzati). Successivamente, per evitare una piena compensabilità fra le Dimensioni, il punteggio dei **Sottoindici** è determinato dalla media geometrica delle Dimensioni che ne fanno parte. La media geometrica è infine utilizzata anche per calcolare il **WeWorld Index Italia** a partire dai 3 Sottoindici.
 

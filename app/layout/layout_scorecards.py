@@ -13,7 +13,7 @@ card = dbc.Container(
             children=[
                 dbc.Col(
                     html.P(
-                        "Seleziona un territorio (Regione/Area/Italia) dall’elenco ed esplora la scheda punteggi per ottenere informazioni sulle sue prestazioni nel WeWorld Index Italia."
+                        "Seleziona un territorio (Regione/Area/Italia) dall’elenco ed esplora la scheda di valutazione per ottenere informazioni sulle sue prestazioni nel WeWorld Index Italia."
                     ),
                     lg=8, 
                     xs=12
@@ -45,7 +45,7 @@ card = dbc.Container(
             ],
             className='mt-4', 
             justify='evenly'
-        ),
+        ),   
         dbc.Row(
             children=[
                 dbc.Col(
@@ -94,8 +94,20 @@ card = dbc.Container(
         dbc.Row(
             children=[
                 dbc.Col(
+                    children = [
+                        html.H4("Sintesi"),
+                        html.P(id="scorecard_summary", style={'align': 'left'})
+                    ],
+                    lg=12, 
+                    xs=12
+                )
+            ],
+        ),     
+        dbc.Row(
+            children=[
+                dbc.Col(
                     children=[
-                        html.H4("Progresso"),
+                        html.H4("Serie storica"),
                         dcc.Loading(
                             dcc.Graph(
                                 id='scorecard_progress',

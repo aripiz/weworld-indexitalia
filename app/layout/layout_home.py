@@ -71,19 +71,19 @@ def display_map():
 
 # Text
 opening_text = '''
-Il **WeWorld Index Italia 2025** è un rapporto originale di WeWorld che, giunto alla sua quarta edizione, fornisce un'istantanea delle condizioni di vita di donne, bambini e bambine in Italia.
+Il **WeWorld Index Italia 2025** è un rapporto originale di WeWorld che, giunto alla sua quarta edizione, fornisce un'istantanea delle condizioni di vita di donne, bambini, bambine e adolescenti in Italia.
 '''
 
 description_text = '''
-WeWorld Index Italia classifica le 21 regioni italiane combinando 30 diversi indicatori con dati dal 2018 al 2023. 
+Il WeWorld Index Italia classifica le 21 regioni italiane combinando 30 diversi indicatori con dati dal 2018 al 2023. 
 Per ogni territorio viene calcolato un punteggio assoluto da 0 a 100, con l'obiettivo di indagare l'implementazione dei diritti umani per donne e minori a livello locale, regionale e nazionale.
 
 Esplora la dashboard per maggiori dettagli:
 - **[Schede di valutazione](/scorecards):** Le schede di valutazione delle 21 regioni italiane offrono una panoramica dei punteggi e delle classifiche specifiche per ciascuna regione, analizzando le performance degli indicatori e permettendo una visione dettagliata della situazione a livello territoriale.
 - **[Dati](/data):** Accedi ai dati completi che costituiscono l'Indice, con la possibilità di esplorare mappe interattive e grafici dinamici per un'analisi approfondita e chiara.
-- **[Methodologia](/methodology):** Scopri la metodologia utilizzata per raccogliere e analizzare i dati, comprendendo i criteri e i processi che guidano la costruzione dell'Indice.
+- **[Metodologia](/methodology):** Scopri la metodologia utilizzata per raccogliere e analizzare i dati, comprendendo i criteri e i processi che guidano la costruzione dell'Indice.
 
-Naviga attraverso queste sezioni per comprendere appieno l'impatto del WeWorld Index Italia 2025 e per esplorare come i diritti delle donne e dei bambini vengano implementati o violati nel territorio italiano. 
+Naviga attraverso queste sezioni per comprendere appieno l'impatto del WeWorld Index Italia 2025 e per esplorare come i diritti delle donne e dei minori vengano implementati o violati nel territorio italiano. 
 Tutte le informazioni e i dataset sono disponibili per il download, offrendoti un accesso diretto alle risorse.
 '''
 
@@ -111,7 +111,7 @@ home = dbc.Container(
             [
             dbc.Col(
                 children=[
-                    dcc.Markdown("### Esplora i dati", className='my-4'),
+                    dcc.Markdown("### Esplora l'Indice", className='my-4'),
                     dcc.Markdown(description_text, className='my-4'),
 
                 ],
