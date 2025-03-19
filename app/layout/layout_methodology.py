@@ -26,7 +26,7 @@ Per una descrizione completa della costruzione, si veda il report [Medodologia e
 structure_text = """
 La necessità di valutare separatamente le performance delle regioni rispetto ai tre Sottoindici deriva da un presupposto fondamentale: per garantire il rispetto, la garanzia e l’implementazione dei diritti umani di donne e minori, è essenziale considerare le problematiche e i bisogni specifici legati al genere e all’età. Senza adottare un approccio intersezionale, non si può raggiungere la piena realizzazione dei diritti di donne, bambini, bambine e adolescenti.  
 
-Una reale inclusione di queste categorie, infatti, può compiersi solo attraverso la creazione, implementazione e il monitoraggio di policy adeguate che devono essere al tempo stesso multidimensionali, per tenere conto dell’intreccio esistente tra i diritti di donne e minori, e targettizzate, ovvero tarate sulle loro necessità specifiche. Per questo è necessario guardare ancora più da vicino alle loro condizioni.
+Una reale implementazione dei diritti di queste categorie di persone può essere conseguita solo mediante la progettazione, l’attuazione e il monitoraggio di politiche adeguate, che devono essere al tempo stesso multidimensionali, per tenere conto dell’intreccio esistente tra i diritti di donne e minori, e targettizzate, ovvero tarate sulle loro necessità specifiche. Per questo è necessario guardare ancora più da vicino alle loro condizioni.
 
 È necessario, quindi, procedere su due fronti paralleli e complementari: da una parte, è fondamentale lavorare sui contesti in cui vivono donne e minori e renderli il più favorevoli possibile al loro pieno sviluppo; dall’altra, non basta un ambiente favorevole: è fondamentale adottare politiche mirate e interventi concreti che garantiscano la piena implementazione dei loro diritti.  
 """
@@ -36,7 +36,7 @@ Il punteggio del WeWorld Index per ogni territorio è costituito da un valore co
 
 Innanzitutto sono calcolati i punteggi di ciascuna delle **Dimensioni** prendendo la media aritmetica dei punteggi delle due **Componenti** costituenti (indicatori normalizzati). Successivamente, per evitare una piena compensabilità fra le Dimensioni, il punteggio dei **Sottoindici** è determinato dalla media geometrica delle Dimensioni che ne fanno parte. La media geometrica è infine utilizzata anche per calcolare il **WeWorld Index Italia** a partire dai 3 Sottoindici.
 
-Questo tipo di aggregazione è **non compensativo**: una scarsa performance in un aspetto giudicato cruciale per la realizzazione dei diritti umani non può essere completamente o parzialmente compensato da un punteggio elevato in altri.
+ Questo tipo di aggregazione è **non compensativo**: una scarsa performance in un aspetto giudicato cruciale per la realizzazione dei diritti umani non può essere completamente o parzialmente compensata da un punteggio elevato in altri.
 """
 
 indicator_table = dbc.Table(
@@ -71,7 +71,8 @@ tab_indicators = html.Div(
                             id='indicator',
                             options=indicators_list,
                             value=indicators_list[0],
-                            style={"width": "100%"}
+                            style={"width": "100%"},
+                            optionHeight=50
                         )
                     ]
                 )
@@ -211,7 +212,7 @@ tab_construction = html.Div(
                                             children=[
                                                 html.H4("Dimensioni", className="card-title"),
                                                 dcc.Markdown(
-                                                    "La **media aritmetica** delle **2 Componenti** (indicatori) di ciascuna Dimensione ne dà il punteggio.",
+                                                    "Il punteggio di ciascuna Dimensione è dato dalla **media aritmetica** delle sue **2 Componenti** (indicatori).",
                                                     className="card-text"
                                                 )
                                             ]
@@ -224,7 +225,7 @@ tab_construction = html.Div(
                                             children=[
                                                 html.H4("Sottoindici", className="card-title"),
                                                 dcc.Markdown(
-                                                    "La **media geometrica** delle **5 Dimensioni** di ciascun Sottoindice ne dà il punteggio.",
+                                                    "Il punteggio di ciascun Sottoindice è dato dalla **media geometrica** delle sue **5 Dimensioni**.",
                                                     className="card-text"
                                                 )
                                             ]
@@ -235,9 +236,9 @@ tab_construction = html.Div(
                                     children=[
                                         dbc.CardBody(
                                             children=[
-                                                html.H4("Indidce", className="card-title"),
+                                                html.H4("Indice", className="card-title"),
                                                 dcc.Markdown(
-                                                    "La **media geometrica** dei **3 Sottoindici** dà il punteggio dell'Indice.",
+                                                    "Il punteggio dell'Indice è dato dalla **media geometrica** dei **3 Sottoindici**.",
                                                     className="card-text"
                                                 )
                                             ]

@@ -68,10 +68,10 @@ def update_scorecard_map(territory):
     else:
         if territory in areas:
             df.loc[df['area'] == territory, 'fill'] = 'yes'#.rename(columns={'year': 'Year', 'area': 'Area'})
-            lat, lon = centroids[territory].values()
+            #lat, lon = centroids[territory].values()
         else:
             df.loc[df['territory'] == territory, 'fill'] = 'yes' #.rename(columns={'year': 'Year', 'area': 'Area'})
-            lat, lon = centroids[df['code'].values[0]].values()    
+            #lat, lon = centroids[df['code'].values[0]].values()    
     fig = px.choropleth(
         df,
         locations='code',

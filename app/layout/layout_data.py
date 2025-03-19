@@ -91,6 +91,7 @@ tab_map_indicators = html.Div([
                 id='indicator',
                 options=components_list,
                 value=components_list[0],
+                optionHeight=50,
                 style={"width": "100%"}
             )], lg=6, xs=12
         ),
@@ -150,7 +151,7 @@ tab_correlations = html.Div([
                 id="corr_x",
                 options=subindexes_list + dimensions_list,
                 value=subindexes_list[0],
-                optionHeight=50
+                #optionHeight=50
                 #style={"width": "75%"}
             )], lg=3, xs=12),
         dbc.Col([
@@ -159,7 +160,7 @@ tab_correlations = html.Div([
                 id="corr_y",
                 options=subindexes_list + dimensions_list,
                 value=subindexes_list[1],
-                optionHeight=50
+                #optionHeight=50
                 #style={"width": "75%"}
             )], lg=3, xs=12),
         dbc.Col([
@@ -168,7 +169,7 @@ tab_correlations = html.Div([
                 id="corr_pop",
                 options=population_list,
                 value=population_list[0],
-                optionHeight=50
+                #optionHeight=50
                 #style={"width": "75%"}
             )], lg=3, xs=12),
         dbc.Col([
@@ -206,7 +207,7 @@ tab_ranking = html.Div([
                 n_clicks=0,
             ),
             dbc.Collapse(
-                dbc.Card("La tabella mostra la classifica dei territori per la componente (Indice/Sottoindice/Dimensione) e l’anno selezionati. È riportata la variazione del punteggio dal 2018.", body=True),
+                dbc.Card("La tabella mostra la classifica dei territori per la componente (Indice/Sottoindice/Dimensione) e l’anno selezionati. È riportata la variazione del punteggio e della poszione dal 2018.", body=True),
                 id="collapse",
                 is_open=True,
             ),
@@ -355,7 +356,7 @@ tab_comparison = html.Div([
                 n_clicks=0,
             ),
             dbc.Collapse(
-                dbc.Card("Il grafico confronta il WeWorld Index Italia con altri indici rilevanti. Ogni cerchio rappresenta un territorio, con le coordinate x e y basate sui punteggi degli indici selezionati. È possibile utilizzare i menu per scegliere quali dati confrontare. Il coefficiente di correlazione di Spearman \u03c1\u209b è visualizzato sopra il grafico. I territori sono colorati in base all'area geografica di appartenenza e dimensionati in base alla loro popolazione (Totale/Minori/Donne). Cliccando sugli elementi nella legenda, è possibile mostrarli/nasconderli. Il PIL pro capite è rappresentato su una scala logaritmica per meglio confrontarlo le altre tipologie di dato.", body=True),
+                dbc.Card("Il grafico confronta il WeWorld Index Italia con altri indici rilevanti. Ogni cerchio rappresenta un territorio, con le coordinate x e y basate sui punteggi degli indici selezionati. È possibile utilizzare i menu per scegliere quali dati confrontare. Il coefficiente di correlazione di Spearman \u03c1\u209b è visualizzato sopra il grafico. I territori sono colorati in base all'area geografica di appartenenza e dimensionati in base alla loro popolazione (Totale/Minori/Donne). Cliccando sugli elementi nella legenda, è possibile mostrarli/nasconderli. Cliccando sugli elementi nella legenda, è possibile mostrarli o nasconderli. Il PIL pro-capite è rappresentato su una scala logaritmica per meglio confrontarlo con le altre tipologie di dato.", body=True),
                 id="collapse",
                 is_open=True,
             ),
@@ -386,7 +387,7 @@ tab_comparison = html.Div([
                 id="comp_pop",
                 options=population_list,
                 value=population_list[0],
-                optionHeight=50
+                #optionHeight=50
                 #style={"width": "75%"}
             )], lg=3, xs=12),
         dbc.Col([

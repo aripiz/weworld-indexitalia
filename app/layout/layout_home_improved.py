@@ -34,7 +34,7 @@ def display_map():
         locations='code',
         geojson=geodata,
         featureidkey=GEO_KEY,
-        fitbounds="locations",
+        #fitbounds="geojson",
         color='tier',
         color_discrete_map=dict(zip(TIER_LABELS, TIER_COLORS)),
         category_orders={'tier': TIER_LABELS},
@@ -48,15 +48,13 @@ def display_map():
         margin={"r": 0, "t": 0, "l": 0, "b": 0, "pad": 0},  # Rimuovi tutto il padding
         geo=dict(
             projection_type='natural earth',
+            projection_scale=15.4,
             showland=False,
             showocean=False,
             showlakes=False,
             showrivers=False,
             visible=False,
-            center=dict(lat=41.9, lon=12.5),  # Centro Italia
-            projection=dict(
-                scale=1.3,  # Aumenta lo zoom generale
-            ),
+            center=dict(lat=41.9, lon=12.5),  # Centro Itali
         ),
     )
 
@@ -117,8 +115,7 @@ home = dbc.Container(
                 # Colonna per la mappa (prima su mobile)
                 dbc.Col(
                     children=[
-                        html.Div(
-                            dcc.Loading(
+                        dcc.Loading(
                                 dcc.Graph(
                                     figure=display_map(),
                                     config={
@@ -130,29 +127,26 @@ home = dbc.Container(
                                     },
                                     id='map_home',
                                     style={
-                                        'width': '100%',
-                                        'height': '70vh',
-                                        'min-height': '400px',
-                                        'max-width': '100vw',
-                                        'margin': '0',
-                                        'padding': '0',
+                                        # 'width': '100%',
+                                        # 'height': '70vh',
+                                        # 'min-height': '400px',
+                                        # 'max-width': '100vw',
+                                        # 'margin': '0',
+                                        # 'padding': '0',
                                     },
                                     className="map-container w-100",
                                 ),
                                 color=SEQUENCE_COLOR[0],
-                                type="circle",
-                            ),
-                            className="w-100 p-0"
                         ),
                         dcc.Markdown(
                             "_Clicca su una regione per accedere alla sua scheda di valutazione._",
                             style={"text-align": "center"},
-                            className="mt-2 mb-4"
+                            #className="mt-2 mb-4"
                         ),
                     ],
                     lg=7,
                     xs=12,
-                    className="order-1 order-lg-2 p-0 p-lg-3",  # Nessun padding su mobile
+                    className="order-1 order-lg-2",  # Nessun padding su mobile
                 ),
                 
                 # Colonna per il testo (seconda su mobile)
@@ -163,10 +157,10 @@ home = dbc.Container(
                     ],
                     lg=5,
                     xs=12,
-                    className="order-2 order-lg-1 px-3",  # Padding solo orizzontale
+                    className="order-2 order-lg-1",  # Padding solo orizzontale
                 ),
             ],
-            className='mt-3 mx-0',  # Nessun margine orizzontale
+            className='mt-2',  # Nessun margine orizzontale
             justify='around',
         ),
     ],
