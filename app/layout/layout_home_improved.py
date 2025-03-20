@@ -54,7 +54,7 @@ def display_map():
             showlakes=False,
             showrivers=False,
             visible=False,
-            center=dict(lat=41.9, lon=12.5),  # Centro Itali
+            center=dict(lat=41.9, lon=12.5),  # Centro Italia
         ),
     )
 

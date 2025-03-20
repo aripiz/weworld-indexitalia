@@ -93,13 +93,15 @@ def update_scorecard_map(territory):
         },
         geo=dict(
             projection_type='natural earth',
-            projection_scale=2,
+            projection_scale=4.5,
             showland=False,
             showocean=False,
             showlakes=False,
             showrivers=False,
             scope='europe',
-            visible=False
+            visible=False,
+            center=dict(lat=41.9, lon=12.5),  # Centro Italia
+
         )
     )
     # if territory == 'Italia':
