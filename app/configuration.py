@@ -35,7 +35,7 @@ SEQUENCE_COLOR = [
 ]
 
 # Tiers
-TIER_LABELS = ['Limitato', 'Minimo', 'Base', 'Moderato', 'Forte', 'Avanzato']
+TIER_LABELS = [ 'Minimo', 'Limitato', 'Base', 'Moderato', 'Forte', 'Avanzato']
 TIER_BINS = [0, 45, 55, 65, 75, 85, 100]
 
 # Map configuration
