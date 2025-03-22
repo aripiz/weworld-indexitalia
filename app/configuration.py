@@ -2,7 +2,7 @@
 
 # Main properties
 TITLE = 'WeWorld Index Italia 2025'
-BRAND_LINK = "https:/weworld.it/"
+BRAND_LINK = "https://weworld.it/"
 CREDITS_LINK = "https://github.com/aripiz"
 
 TEMPLATE = 'journal'
