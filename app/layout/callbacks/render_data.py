@@ -62,8 +62,9 @@ def display_map_index(feature, year):
     )
 
     fig.update_layout(
-        legend=dict(title_text="Livello di implementazione<br>dei diritti umani"),
-        margin={"r": 0, "t": 0, "l": 0, "b": 0},
+        legend=dict(title_text="Livello<br>di implementazione<br>dei diritti umani"),
+        margin=dict(l=20, r=20),
+        #margin={"r": 0, "t": 0, "l": 0, "b": 0},
         geo=dict(
             projection_type='natural earth',
             showland=False,
@@ -95,7 +96,10 @@ def display_map_index(feature, year):
             y=-0.3,
             xanchor="left",
             x=0.01,
-            yref="container"
+            yref="container",
+            traceorder="normal",  # Mantiene l'ordine degli elementi
+            itemsizing="constant",  # Mantiene la dimensione costante
+            itemwidth=70  # Imposta la larghezza massima degli elementi della legenda
         ),
     )
 
