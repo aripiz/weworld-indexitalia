@@ -71,8 +71,8 @@ def display_map():
     return fig
 
 # Text
-opening_text = '''
-Il **WeWorld Index Italia 2025** è un rapporto originale di WeWorld che, giunto alla sua quarta edizione, fornisce un'istantanea delle condizioni di vita di donne, bambini, bambine e adolescenti in Italia.
+opening_text = f'''
+Il **WeWorld Index Italia 2025** è un rapporto originale di **[WeWorld]({BRAND_LINK})** che, giunto alla sua quarta edizione, fornisce un'istantanea delle condizioni di vita di donne, bambini, bambine e adolescenti in Italia.
 '''
 
 description_text = '''

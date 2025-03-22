@@ -51,7 +51,7 @@ navbar = dbc.NavbarSimple(
         "\u200a\u200a\u200a\u200a",
         html.Span("Index Italia") 
     ],
-    brand_href=BRAND_LINK,
+    brand_href="/",
     fixed='top',
     color='primary',
     dark=True
