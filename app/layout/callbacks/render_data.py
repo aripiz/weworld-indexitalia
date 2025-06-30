@@ -448,9 +448,9 @@ def display_evolution(component, territory):
     """
     df = data.query("territory == @territory").copy()
     if isinstance(component, list):
-        component = [c.split("Indicatore: ")[0] for c in component]
+        component = [c.split(":")[0] if c.startswith("Indicatore") else c for c in component]
     else:
-        component = component.split(": ")[0]
+        component = component.split(":")[0] if component.startswith("Indicatore") else component
     df = pd.melt(df, id_vars=['territory', 'year'], value_vars=component, var_name='component', value_name='score')
     fig = px.line(
         df,

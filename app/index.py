@@ -1,6 +1,5 @@
 # index.py
 
-from operator import index
 from dash import Dash
 import dash_bootstrap_components as dbc
 import pandas as pd

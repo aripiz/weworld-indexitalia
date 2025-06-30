@@ -1,6 +1,5 @@
 # app.py
 
-
 from content import app
 
 server = app.server

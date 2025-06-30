@@ -267,7 +267,7 @@ tab_evolution = html.Div([
             dbc.Label("Componente"),
             dcc.Dropdown(
                 id="evolution_feature",
-                options=subindexes_list +  dimensions_list + components_list,
+                options=subindexes_list + dimensions_list + components_list,
                 value=subindexes_list[0],
                 optionHeight=50,
                 #style={"width": "75%"},
